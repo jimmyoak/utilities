@@ -1,4 +1,12 @@
 {
+    "name": "jimmyoak/utilities",
+    "authors": [
+        {
+            "name": "Adrián Robles",
+            "homepage": "http://github.com/jimmyoak",
+            "role": "Developer"
+        }
+    ],
     "require": {
         "phpunit/phpunit": "3.7.*"
     },

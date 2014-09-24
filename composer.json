@@ -12,7 +12,7 @@
             "type": "package",
             "package": {
                 "name": "jimmyoak/utilities",
-                "version": "dev-master",
+                "version": "0.1",
                 "source": {
                     "url": "git://github.com/jimmyoak/utilities.git",
                     "type": "git",

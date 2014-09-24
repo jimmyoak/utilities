@@ -1,8 +1,8 @@
 <?php
 
-namespace Test\Utilities;
+namespace JimmyOak\Test\Utilities;
 
-use Utilities\StringUtils;
+use JimmyOak\Utilities\StringUtils;
 
 class StringUtilsTest extends UtilsBaseTest
 {

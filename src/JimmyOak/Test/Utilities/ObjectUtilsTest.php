@@ -1,8 +1,8 @@
 <?php
 
-namespace Test\Utilities;
+namespace JimmyOak\Test\Utilities;
 
-use Utilities\ObjectUtils;
+use JimmyOak\Utilities\ObjectUtils;
 
 class ObjectUtilsTest extends UtilsBaseTest
 {

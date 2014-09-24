@@ -4,8 +4,7 @@
     "authors": [
         {
             "name": "Adrián Robles",
-            "homepage": "http://github.com/jimmyoak",
-            "role": "Developer"
+            "homepage": "http://github.com/jimmyoak"
         }
     ],
     "require": {

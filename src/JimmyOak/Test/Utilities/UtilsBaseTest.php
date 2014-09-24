@@ -1,8 +1,8 @@
 <?php
 
-namespace Test\Utilities;
+namespace JimmyOak\Test\Utilities;
 
-use Utilities\UtilsBase;
+use JimmyOak\Utilities\UtilsBase;
 
 abstract class UtilsBaseTest extends \PHPUnit_Framework_TestCase
 {

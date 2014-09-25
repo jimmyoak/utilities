@@ -22,6 +22,6 @@ abstract class UtilsBase
 
     public function __clone()
     {
-        throw new \Exception('Singleton class, use JimmyOak\instance() method');
+        throw new \Exception('Singleton class, use instance() method');
     }
 }

@@ -27,9 +27,9 @@ class FileUtils extends UtilsBase
         $allFiles = [];
         foreach ($files as $key => $file) {
             if ($file !== '.' && $file !== '..') {
-                if (is_dir($file)) {
+                $pathToScan = $path . DIRECTORY_SEPARATOR . $file;
+                if (is_dir($pathToScan)) {
                     if ($recursive) {
-                        $pathToScan = $path . DIRECTORY_SEPARATOR . $file;
                         $moreFiles = $this->scandir($pathToScan, $fileOrDirs, true);
                         $appendParents = function ($path) use ($file) {
                             return $file . DIRECTORY_SEPARATOR . $path;

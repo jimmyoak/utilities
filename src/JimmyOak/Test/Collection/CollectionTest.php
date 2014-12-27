@@ -8,12 +8,13 @@ use JimmyOak\Exception\Collection\UndefinedOffsetException;
 
 class CollectionTest extends \PHPUnit_Framework_TestCase
 {
+    private $collectionObjectType = \DateTimeInterface::class;
     /** @var Collection */
     private $collection;
 
     protected function setUp()
     {
-        $this->collection = new Collection(\DateTimeInterface::class);
+        $this->collection = new Collection($this->collectionObjectType);
     }
 
     /** @test */
@@ -65,5 +66,11 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         $nowDateTime = new \DateTimeImmutable();
         $this->collection[] = $nowDateTime;
         $this->assertSame($nowDateTime, $this->collection[0]);
+    }
+
+    /** @test */
+    public function shouldGetCollectionObjectType()
+    {
+        $this->assertSame($this->collectionObjectType, $this->collection->getObjectType());
     }
 }

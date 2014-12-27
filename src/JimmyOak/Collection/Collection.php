@@ -17,6 +17,11 @@ class Collection implements \ArrayAccess
         $this->objectType = $objectType;
     }
 
+    public function getObjectType()
+    {
+        return $this->objectType;
+    }
+
     /**
      * @param mixed $offset
      *

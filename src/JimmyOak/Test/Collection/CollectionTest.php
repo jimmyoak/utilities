@@ -73,4 +73,47 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertSame($this->collectionObjectType, $this->collection->getObjectType());
     }
+
+    /** @test */
+    public function shouldBeCountable()
+    {
+        $this->collection[] = new \DateTime();
+        $this->collection[] = new \DateTime();
+
+        $this->assertCount(2, $this->collection);
+    }
+
+    /** @test */
+    public function shouldBeIterable()
+    {
+        $values = [
+            new \DateTime('-1 day'),
+            new \DateTime(),
+            new \DateTime('+1 day')
+        ];
+
+        $this->collection[] = $values[0];
+        $this->collection[] = $values[1];
+        $this->collection[] = $values[2];
+
+        foreach ($this->collection as $key => $value) {
+            $this->assertSame($values[$key], $value);
+        }
+    }
+
+    /** @test */
+    public function shouldBeIterableDespiteAKeyGap()
+    {
+        $values = [
+            0 => new \DateTime('-1 day'),
+            2 => new \DateTime('+1 day')
+        ];
+
+        $this->collection[0] = $values[0];
+        $this->collection[2] = $values[2];
+
+        foreach ($this->collection as $key => $value) {
+            $this->assertSame($values[$key], $value);
+        }
+    }
 }

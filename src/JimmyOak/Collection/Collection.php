@@ -5,12 +5,14 @@ namespace JimmyOak\Collection;
 use JimmyOak\Exception\Collection\NotValidObjectTypeException;
 use JimmyOak\Exception\Collection\UndefinedOffsetException;
 
-class Collection implements \ArrayAccess
+class Collection implements \ArrayAccess, \Countable, \Iterator
 {
     /** @var string */
     private $objectType;
     /** @var array */
     protected $collection = [];
+    /** @var int */
+    private $position = 0;
 
     public function __construct($objectType)
     {
@@ -54,6 +56,36 @@ class Collection implements \ArrayAccess
     public function offsetUnset($offset)
     {
         unset($this->collection[$offset]);
+    }
+
+    public function count()
+    {
+        return count($this->collection);
+    }
+
+    public function current()
+    {
+        return $this->collection[$this->position];
+    }
+
+    public function next()
+    {
+        $this->position++;
+    }
+
+    public function key()
+    {
+        return $this->position;
+    }
+
+    public function valid()
+    {
+        return $this->offsetExists($this->position);
+    }
+
+    public function rewind()
+    {
+        reset($this->collection);
     }
 
     /**

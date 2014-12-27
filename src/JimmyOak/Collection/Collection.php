@@ -10,7 +10,7 @@ class Collection implements \ArrayAccess
     /** @var string */
     private $objectType;
     /** @var array */
-    private $collection = [];
+    protected $collection = [];
 
     public function __construct($objectType)
     {

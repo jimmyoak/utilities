@@ -77,6 +77,23 @@ class ObjectUtilsTest extends UtilsBaseTest
             'aPrivateProperty' => 'A STRING',
             'aProtectedProperty' => 1234,
             'aPublicProperty' => 'ANOTHER STRING',
+            'anObject' => [
+                'date' => '1992-10-07 21:05:00.000000',
+                'timezone_type' => 3,
+                'timezone' => 'Europe/Madrid',
+            ],
+            'anArrayOfObjects' => [
+                [
+                    'date' => '1992-10-07 21:05:00.000000',
+                    'timezone_type' => 3,
+                    'timezone' => 'Europe/Madrid',
+                ],
+                [
+                    'date' => '1992-10-07 21:05:00.000000',
+                    'timezone_type' => 3,
+                    'timezone' => 'Europe/Madrid',
+                ]
+            ],
             'aParentProperty' => 5,
         ];
 

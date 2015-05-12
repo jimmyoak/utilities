@@ -21,10 +21,14 @@ class ObjectUtils extends UtilsBase
     {
         $array = [];
 
-        $vars = $this->getAllObjectVars($object);
+        if (is_object($object)) {
+            $vars = $this->getAllObjectVars($object);
+        } else {
+            $vars = $object;
+        }
 
         foreach ($vars as $property => $value) {
-            if (is_object($value)) {
+            if (is_object($value) || is_array($value)) {
                 $array[$property] = $this->toDeepArray($value);
             } elseif (is_resource($value)) {
                 $array[$property] = (string) $value;
@@ -72,7 +76,7 @@ class ObjectUtils extends UtilsBase
         $array = [];
 
         foreach ($object as $property => $value) {
-            if (is_object($value)) {
+            if (is_object($value) || is_array($value)) {
                 $array[$property] = $this->toShallowArray($value);
             } elseif (is_resource($value)) {
                 $array[$property] = (string)$value;

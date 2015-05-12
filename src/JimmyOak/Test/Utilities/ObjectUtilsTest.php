@@ -2,6 +2,7 @@
 
 namespace JimmyOak\Test\Utilities;
 
+use JimmyOak\Test\Value\DummyClass;
 use JimmyOak\Utilities\ObjectUtils;
 
 class ObjectUtilsTest extends UtilsBaseTest
@@ -68,7 +69,23 @@ class ObjectUtilsTest extends UtilsBaseTest
         $this->assertEquals($this->expectedParsedXml, $result);
     }
 
-    protected function prepareObjectToParse()
+    /** @test */
+    public function transforms_object_to_array_deeply()
+    {
+        $object = new DummyClass();
+        $expected = [
+            'aPrivateProperty' => 'A STRING',
+            'aProtectedProperty' => 1234,
+            'aPublicProperty' => 'ANOTHER STRING',
+            'aParentProperty' => 5,
+        ];
+
+        $objectAsArray = $this->utils->toArray($object, true);
+
+        $this->assertSame($expected, $objectAsArray);
+    }
+
+    private function prepareObjectToParse()
     {
         $details = new \stdClass();
 

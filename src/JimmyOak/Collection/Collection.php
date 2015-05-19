@@ -24,6 +24,13 @@ class Collection implements \ArrayAccess, \Countable, \Iterator
         return $this->objectType;
     }
 
+    protected function setObjectType($objectType)
+    {
+        $this->objectType = $objectType;
+
+        return $this;
+    }
+
     /**
      * @param mixed $offset
      *

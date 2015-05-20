@@ -16,15 +16,15 @@ class FileUtils extends UtilsBase
 
     public function scanDir($path, $fileOrDirs = self::ALL, $recursive = true)
     {
-        $files = new \DirectoryIterator($path);
+        $files = scandir($path);
 
         $path = $this->stripPathLastDirectorySeparator($path);
 
         $allFiles = [];
         foreach ($files as $file) {
-            if ($file->getBasename() !== '.' && $file->getBasename() !== '..') {
+            if ($file !== '.' && $file !== '..') {
                 $pathToScan = $path . DIRECTORY_SEPARATOR . $file;
-                if ($file->isDir()) {
+                if (is_dir($pathToScan)) {
                     if ($recursive) {
                         $moreFiles = $this->scanDir($pathToScan, $fileOrDirs, true);
                         $appendParents = function ($path) use ($file) {

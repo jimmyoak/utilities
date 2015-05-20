@@ -4,15 +4,14 @@ namespace JimmyOak\Collection;
 
 use JimmyOak\Exception\Collection\NotValidObjectTypeException;
 use JimmyOak\Exception\Collection\UndefinedOffsetException;
+use Traversable;
 
-class Collection implements \ArrayAccess, \Countable, \Iterator
+class Collection implements \ArrayAccess, \Countable, \IteratorAggregate
 {
     /** @var string */
     private $objectType;
     /** @var array */
     protected $collection = [];
-    /** @var int */
-    private $position = 0;
 
     public function __construct($objectType)
     {
@@ -70,29 +69,9 @@ class Collection implements \ArrayAccess, \Countable, \Iterator
         return count($this->collection);
     }
 
-    public function current()
+    public function getIterator()
     {
-        return $this->collection[$this->position];
-    }
-
-    public function next()
-    {
-        $this->position++;
-    }
-
-    public function key()
-    {
-        return $this->position;
-    }
-
-    public function valid()
-    {
-        return $this->offsetExists($this->position);
-    }
-
-    public function rewind()
-    {
-        reset($this->collection);
+        return new \ArrayIterator($this->collection);
     }
 
     /**

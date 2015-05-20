@@ -16,15 +16,15 @@ class FileUtils extends UtilsBase
 
     public function scanDir($path, $fileOrDirs = self::ALL, $recursive = true)
     {
-        $files = scandir($path);
+        $files = new \DirectoryIterator($path);
 
         $path = $this->stripPathLastDirectorySeparator($path);
 
         $allFiles = [];
-        foreach ($files as $key => $file) {
-            if ($file !== '.' && $file !== '..') {
+        foreach ($files as $file) {
+            if ($file->getBasename() !== '.' && $file->getBasename() !== '..') {
                 $pathToScan = $path . DIRECTORY_SEPARATOR . $file;
-                if (is_dir($pathToScan)) {
+                if ($file->isDir()) {
                     if ($recursive) {
                         $moreFiles = $this->scanDir($pathToScan, $fileOrDirs, true);
                         $appendParents = function ($path) use ($file) {
@@ -34,11 +34,11 @@ class FileUtils extends UtilsBase
                         $allFiles = array_merge($allFiles, $moreFiles);
                     }
                     if ($fileOrDirs & self::DIRS) {
-                        $allFiles[] = $file;
+                        $allFiles[] = (string) $file;
                     }
                 } else {
                     if ($fileOrDirs & self::FILES) {
-                        $allFiles[] = $file;
+                        $allFiles[] = (string) $file;
                     }
                 }
             }

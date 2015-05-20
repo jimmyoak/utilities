@@ -8,9 +8,9 @@ use JimmyOak\Exception\Collection\UndefinedOffsetException;
 
 class CollectionTest extends \PHPUnit_Framework_TestCase
 {
-    private $collectionObjectType = \DateTimeInterface::class;
+    protected $collectionObjectType = \DateTimeInterface::class;
     /** @var Collection */
-    private $collection;
+    protected $collection;
 
     protected function setUp()
     {

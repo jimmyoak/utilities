@@ -14,13 +14,9 @@ class FileUtils extends UtilsBase
         return preg_match('/\.' . $extensionPregQuoted . '$/i', $fileName) > 0;
     }
 
-    public function scandir($path, $fileOrDirs = self::ALL, $recursive = true)
+    public function scanDir($path, $fileOrDirs = self::ALL, $recursive = true)
     {
         $files = scandir($path);
-
-        if ($fileOrDirs === self::ALL && !$recursive) {
-            return $files;
-        }
 
         $path = $this->stripPathLastDirectorySeparator($path);
 
@@ -30,7 +26,7 @@ class FileUtils extends UtilsBase
                 $pathToScan = $path . DIRECTORY_SEPARATOR . $file;
                 if (is_dir($pathToScan)) {
                     if ($recursive) {
-                        $moreFiles = $this->scandir($pathToScan, $fileOrDirs, true);
+                        $moreFiles = $this->scanDir($pathToScan, $fileOrDirs, true);
                         $appendParents = function ($path) use ($file) {
                             return $file . DIRECTORY_SEPARATOR . $path;
                         };
@@ -61,6 +57,7 @@ class FileUtils extends UtilsBase
         $pathLength = strlen($path);
         $pathLastChar = $path[$pathLength - 1];
         $path = $pathLastChar === DIRECTORY_SEPARATOR ? substr($path, -1) : $path;
+
         return $path;
     }
 }

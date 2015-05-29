@@ -16,5 +16,10 @@
         "psr-0": {
             "": "src/"
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "JimmyOak\\Test\\": "test/JimmyOak"
+        }
     }
 }

@@ -73,9 +73,9 @@ class FileUtilsTest extends UtilsBaseTest
     {
         $expected = [
             'AFile.txt',
-            'AnotherDir/AnotherDirIntoDir/AFarAwayFile.txt',
-            'AnotherDir/AnotherDirIntoDir',
-            'AnotherDir/AnotherFileIntoDir.txt',
+            'AnotherDir'.DIRECTORY_SEPARATOR.'AnotherDirIntoDir'.DIRECTORY_SEPARATOR.'AFarAwayFile.txt',
+            'AnotherDir'.DIRECTORY_SEPARATOR.'AnotherDirIntoDir',
+            'AnotherDir'.DIRECTORY_SEPARATOR.'AnotherFileIntoDir.txt',
             'AnotherDir',
             'AnotherFile.txt',
         ];
@@ -90,8 +90,8 @@ class FileUtilsTest extends UtilsBaseTest
     {
         $expected = [
             'AFile.txt',
-            'AnotherDir/AnotherDirIntoDir/AFarAwayFile.txt',
-            'AnotherDir/AnotherFileIntoDir.txt',
+            'AnotherDir'.DIRECTORY_SEPARATOR.'AnotherDirIntoDir'.DIRECTORY_SEPARATOR.'AFarAwayFile.txt',
+            'AnotherDir'.DIRECTORY_SEPARATOR.'AnotherFileIntoDir.txt',
             'AnotherFile.txt',
         ];
 
@@ -104,7 +104,7 @@ class FileUtilsTest extends UtilsBaseTest
     public function shouldScanOnlyDirsFromADirRecursively()
     {
         $expected = [
-            'AnotherDir/AnotherDirIntoDir',
+            'AnotherDir'.DIRECTORY_SEPARATOR.'AnotherDirIntoDir',
             'AnotherDir',
         ];
 

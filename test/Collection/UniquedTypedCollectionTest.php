@@ -2,13 +2,13 @@
 
 namespace JimmyOak\Test\Collection;
 
-use JimmyOak\Collection\UniquedCollection;
+use JimmyOak\Collection\UniquedTypedCollection;
 
-class UniquedCollectionTest extends CollectionTest
+class UniquedTypedCollectionTest extends TypedCollectionTest
 {
     protected function setUp()
     {
-        $this->collection = new UniquedCollection();
+        $this->collection = new UniquedTypedCollection($this->collectionObjectType);
     }
 
     /** @test */

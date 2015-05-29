@@ -3,18 +3,15 @@
 namespace JimmyOak\Test\Collection;
 
 use JimmyOak\Collection\Collection;
-use JimmyOak\Exception\Collection\NotValidObjectTypeException;
-use JimmyOak\Exception\Collection\UndefinedOffsetException;
 
 class CollectionTest extends \PHPUnit_Framework_TestCase
 {
-    protected $collectionObjectType = \DateTimeInterface::class;
-    /** @var Collection */
+    /** @var TypedCollection */
     protected $collection;
 
     protected function setUp()
     {
-        $this->collection = new Collection($this->collectionObjectType);
+        $this->collection = new Collection();
     }
 
     /** @test */
@@ -37,41 +34,12 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
     }
 
     /** @test */
-    public function shouldThrowExceptionOnNonExistentOffset()
-    {
-        $this->setExpectedException(UndefinedOffsetException::class);
-        $value = $this->collection[0];
-        $this->assertNull($value);
-    }
-
-    /** @test */
     public function shouldNotBeIncrementable()
     {
         $nowDateTime = new \DateTime();
         $this->collection[0] = $nowDateTime;
         $this->collection[0]++;
         $this->assertSame($nowDateTime, $this->collection[0]);
-    }
-
-    /** @test */
-    public function shouldThrowExceptionOnAddingAnotherTypeThanExpected()
-    {
-        $this->setExpectedException(NotValidObjectTypeException::class);
-        $this->collection[] = new \stdClass();
-    }
-
-    /** @test */
-    public function shouldNotThrowExceptionOnAddingSubClassOfExpectedType()
-    {
-        $nowDateTime = new \DateTimeImmutable();
-        $this->collection[] = $nowDateTime;
-        $this->assertSame($nowDateTime, $this->collection[0]);
-    }
-
-    /** @test */
-    public function shouldGetCollectionObjectType()
-    {
-        $this->assertSame($this->collectionObjectType, $this->collection->getObjectType());
     }
 
     /** @test */

@@ -2,7 +2,7 @@
 
 namespace JimmyOak\Collection;
 
-class UniquedCollection extends Collection
+class UniquedTypedCollection extends TypedCollection
 {
     use CollectionUniquer;
 }

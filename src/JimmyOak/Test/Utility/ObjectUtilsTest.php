@@ -1,9 +1,9 @@
 <?php
 
-namespace JimmyOak\Test\Utilities;
+namespace JimmyOak\Test\Utility;
 
 use JimmyOak\Test\Value\DummyClass;
-use JimmyOak\Utilities\ObjectUtils;
+use JimmyOak\Utility\ObjectUtils;
 
 class ObjectUtilsTest extends UtilsBaseTest
 {

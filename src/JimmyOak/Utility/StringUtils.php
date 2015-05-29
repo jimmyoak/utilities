@@ -1,6 +1,6 @@
 <?php
 
-namespace JimmyOak\Utilities;
+namespace JimmyOak\Utility;
 
 class StringUtils extends UtilsBase
 {
@@ -114,7 +114,7 @@ class StringUtils extends UtilsBase
 
     public function removeExtraSpaces($string)
     {
-        return trim(preg_replace('/\s+/',' ', $string));
+        return trim(preg_replace('/\s+/', ' ', $string));
     }
 
     private function parseModifiers($modifiers)

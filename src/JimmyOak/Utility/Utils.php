@@ -1,6 +1,6 @@
 <?php
 
-namespace JimmyOak\Utilities;
+namespace JimmyOak\Utility;
 
 class Utils extends UtilsBase
 {

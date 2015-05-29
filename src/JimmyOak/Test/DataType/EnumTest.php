@@ -1,8 +1,6 @@
 <?php
 
-namespace JimmyOak\Test\DataTypes;
-
-use JimmyOak\DataTypes\Enum;
+namespace JimmyOak\Test\DataType;
 
 class EnumTest extends \PHPUnit_Framework_TestCase
 {

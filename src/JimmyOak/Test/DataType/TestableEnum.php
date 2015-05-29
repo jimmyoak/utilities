@@ -1,8 +1,8 @@
 <?php
 
-namespace JimmyOak\Test\DataTypes;
+namespace JimmyOak\Test\DataType;
 
-use JimmyOak\DataTypes\Enum;
+use JimmyOak\DataType\Enum;
 
 class TestableEnum extends Enum
 {

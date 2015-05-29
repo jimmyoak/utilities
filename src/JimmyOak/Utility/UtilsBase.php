@@ -1,12 +1,11 @@
 <?php
 
-namespace JimmyOak\Utilities;
+namespace JimmyOak\Utility;
 
 abstract class UtilsBase
 {
     protected function __construct()
     {
-
     }
 
     public static function instance()

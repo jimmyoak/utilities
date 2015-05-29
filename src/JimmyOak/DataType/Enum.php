@@ -1,6 +1,6 @@
 <?php
 
-namespace JimmyOak\DataTypes;
+namespace JimmyOak\DataType;
 
 abstract class Enum
 {

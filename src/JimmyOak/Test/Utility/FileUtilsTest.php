@@ -1,8 +1,8 @@
 <?php
 
-namespace JimmyOak\Test\Utilities;
+namespace JimmyOak\Test\Utility;
 
-use JimmyOak\Utilities\FileUtils;
+use JimmyOak\Utility\FileUtils;
 
 class FileUtilsTest extends UtilsBaseTest
 {

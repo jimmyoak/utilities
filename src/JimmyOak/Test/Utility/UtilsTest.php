@@ -1,12 +1,12 @@
 <?php
 
-namespace JimmyOak\Test\Utilities;
+namespace JimmyOak\Test\Utility;
 
-use JimmyOak\Utilities\ArrayUtils;
-use JimmyOak\Utilities\FileUtils;
-use JimmyOak\Utilities\ObjectUtils;
-use JimmyOak\Utilities\StringUtils;
-use JimmyOak\Utilities\Utils;
+use JimmyOak\Utility\ArrayUtils;
+use JimmyOak\Utility\FileUtils;
+use JimmyOak\Utility\ObjectUtils;
+use JimmyOak\Utility\StringUtils;
+use JimmyOak\Utility\Utils;
 
 class UtilsTest extends UtilsBaseTest
 {

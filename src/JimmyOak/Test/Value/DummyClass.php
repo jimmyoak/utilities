@@ -12,7 +12,7 @@ class DummyClass extends ParentDummyClass
 
     public function __construct()
     {
-        $this->anObject = new \DateTime('1992-10-07 21:05', new \DateTimeZone('Europe/Madrid'));
+        $this->anObject = new AnotherDummyClass();
         $this->anArrayOfObjects = [
             $this->anObject,
             $this->anObject

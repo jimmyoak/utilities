@@ -4,5 +4,5 @@ namespace JimmyOak\Test\Value;
 
 class ParentDummyClass
 {
-        private $aParentProperty = 5;
+    private $aParentProperty = 5;
 }

@@ -78,20 +78,20 @@ class ObjectUtilsTest extends UtilsBaseTest
             'aProtectedProperty' => 1234,
             'aPublicProperty' => 'ANOTHER STRING',
             'anObject' => [
-                'date' => '1992-10-07 21:05:00.000000',
-                'timezone_type' => 3,
-                'timezone' => 'Europe/Madrid',
+                'aValue' => 'Jimmy',
+                'anotherValue' => 'Kane',
+                'oneMoreValue' => 'Oak',
             ],
             'anArrayOfObjects' => [
                 [
-                    'date' => '1992-10-07 21:05:00.000000',
-                    'timezone_type' => 3,
-                    'timezone' => 'Europe/Madrid',
+                    'aValue' => 'Jimmy',
+                    'anotherValue' => 'Kane',
+                    'oneMoreValue' => 'Oak',
                 ],
                 [
-                    'date' => '1992-10-07 21:05:00.000000',
-                    'timezone_type' => 3,
-                    'timezone' => 'Europe/Madrid',
+                    'aValue' => 'Jimmy',
+                    'anotherValue' => 'Kane',
+                    'oneMoreValue' => 'Oak',
                 ]
             ],
             'aParentProperty' => 5,

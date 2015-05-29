@@ -14,12 +14,12 @@
     },
     "autoload": {
         "psr-4": {
-            "": "src/"
+            "JimmyOak\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "JimmyOak\\Test\\": "test/JimmyOak"
+            "JimmyOak\\Test\\": "test/"
         }
     }
 }

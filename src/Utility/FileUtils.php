@@ -8,12 +8,13 @@ class FileUtils extends UtilsBase
     const DIRS = 2;
     const ALL = 3;
 
-    public function extensionIs($fileName, $extension)
-    {
-        $extensionPregQuoted = preg_quote($extension);
-        return preg_match('/\.' . $extensionPregQuoted . '$/i', $fileName) > 0;
-    }
-
+    /**
+     * @param string $path
+     * @param int $fileOrDirs
+     * @param bool $recursive
+     *
+     * @return array
+     */
     public function scanDir($path, $fileOrDirs = self::ALL, $recursive = true)
     {
         $files = scandir($path);
@@ -45,6 +46,18 @@ class FileUtils extends UtilsBase
         }
 
         return $allFiles;
+    }
+
+    /**
+     * @param string $fileName
+     * @param string $extension
+     *
+     * @return bool
+     */
+    public function extensionIs($fileName, $extension)
+    {
+        $extensionPregQuoted = preg_quote($extension);
+        return preg_match('/\.' . $extensionPregQuoted . '$/i', $fileName) > 0;
     }
 
     /**

@@ -87,6 +87,13 @@ class StringUtils extends UtilsBase
         $this->emailRegExp = '/^([a-z0-9_.-])+@([a-z0-9_.-])+\.([a-z])+([a-z])+/i';
     }
 
+    /**
+     * @param string $haystack
+     * @param string $needle
+     * @param int|null $modifiers
+     *
+     * @return bool
+     */
     public function beginsWith($haystack, $needle, $modifiers = null)
     {
         $this->prepareHaystackAndNeedle($haystack, $needle, $modifiers);
@@ -97,11 +104,23 @@ class StringUtils extends UtilsBase
         return (bool)preg_match($pattern . $parsedModifiers, $haystack);
     }
 
+    /**
+     * @param string $string
+     *
+     * @return string
+     */
     public function removeAccents($string)
     {
         return strtr($string, $this->accentsMap);
     }
 
+    /**
+     * @param string $haystack
+     * @param string $needle
+     * @param int|null $modifiers
+     *
+     * @return bool
+     */
     public function endsWith($haystack, $needle, $modifiers = null)
     {
         self::prepareHaystackAndNeedle($haystack, $needle, $modifiers);
@@ -112,9 +131,34 @@ class StringUtils extends UtilsBase
         return (bool)preg_match($pattern . $parsedModifiers, $haystack);
     }
 
+    /**
+     * @param string $string
+     *
+     * @return string
+     */
     public function removeExtraSpaces($string)
     {
         return trim(preg_replace('/\s+/', ' ', $string));
+    }
+
+    /**
+     * @param string $string
+     *
+     * @return bool
+     */
+    public function isUrl($string)
+    {
+        return preg_match($this->urlRegExp, $string) > 0;
+    }
+
+    /**
+     * @param string $string
+     *
+     * @return bool
+     */
+    public function isEmail($string)
+    {
+        return preg_match($this->emailRegExp, $string) > 0;
     }
 
     private function parseModifiers($modifiers)
@@ -139,15 +183,5 @@ class StringUtils extends UtilsBase
             $haystack = $this->removeAccents($haystack);
             $needle   = $this->removeAccents($needle);
         }
-    }
-
-    public function isUrl($string)
-    {
-        return preg_match($this->urlRegExp, $string) > 0;
-    }
-
-    public function isEmail($string)
-    {
-        return preg_match($this->emailRegExp, $string) > 0;
     }
 }

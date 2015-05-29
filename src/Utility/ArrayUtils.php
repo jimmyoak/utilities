@@ -8,6 +8,12 @@ class ArrayUtils extends UtilsBase
     const PRESERVE_KEYS = 1;
     const PRESERVE_ASSOCIATIVE_KEYS = 2;
 
+    /**
+     * @param array $toFlat
+     * @param int $preserveKeys
+     *
+     * @return array
+     */
     public function flatten(array $toFlat, $preserveKeys = self::NO_PRESERVE_KEYS)
     {
         if ($preserveKeys === self::PRESERVE_KEYS) {
@@ -22,13 +28,29 @@ class ArrayUtils extends UtilsBase
     }
 
     /**
-     * @param array $toFlat
+     * @param array $data
      *
-     * @internal param $flatten
-     *
-     * @internal param $preserveKeys
-     * @return array
+     * @return string
      */
+    public function toXmlString(array $data)
+    {
+        $xml = '<?xml version="1.0" encoding="UTF-8"?>';
+
+        $xml .= $this->parseAsXml($data);
+
+        return $xml;
+    }
+
+    /**
+     * @param array $arrayToParseAsXml
+     *
+     * @return \SimpleXMLElement
+     */
+    public function toXml(array $arrayToParseAsXml)
+    {
+        return simplexml_load_string($this->parseAsXml($arrayToParseAsXml));
+    }
+
     private function flattenPreservingKeys(array $toFlat)
     {
         $flatten = [];
@@ -44,13 +66,6 @@ class ArrayUtils extends UtilsBase
         return $flatten;
     }
 
-    /**
-     * @param array $toFlat
-     *
-     * @internal param $flatten
-     *
-     * @return array
-     */
     private function flattenNotPreservingKeys(array $toFlat)
     {
         $flatten = [];
@@ -83,15 +98,6 @@ class ArrayUtils extends UtilsBase
         return $flatten;
     }
 
-    public function toXmlString(array $data)
-    {
-        $xml = '<?xml version="1.0" encoding="UTF-8"?>';
-
-        $xml .= $this->parseAsXml($data);
-
-        return $xml;
-    }
-
     private function parseAsXml(array $data, $inheritedKey = null)
     {
         $xml = '';
@@ -113,12 +119,6 @@ class ArrayUtils extends UtilsBase
         return $xml;
     }
 
-    /**
-     * @param $key
-     * @param $value
-     *
-     * @return string
-     */
     private function parseXmlKeyValue($key, $value = null)
     {
         if (empty($value)) {
@@ -139,10 +139,5 @@ class ArrayUtils extends UtilsBase
         }
 
         return false;
-    }
-
-    public function toXml(array $arrayToParseAsXml)
-    {
-        return simplexml_load_string($this->parseAsXml($arrayToParseAsXml));
     }
 }

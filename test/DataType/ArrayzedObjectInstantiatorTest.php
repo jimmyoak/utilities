@@ -3,6 +3,7 @@
 namespace JimmyOak\Test\DataType;
 
 use JimmyOak\DataType\ArrayzedObject;
+use JimmyOak\DataType\ArrayzedObjectFactory;
 use JimmyOak\DataType\ArrayzedObjectInstantiator;
 use JimmyOak\Test\Value\DummyClass;
 
@@ -14,6 +15,23 @@ class ArrayzedObjectInstantiatorTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->instantiator = new ArrayzedObjectInstantiator();
+    }
+
+    /** @test */
+    public function shouldCreateAndFillDateTimeInstance()
+    {
+        $dateTimeData = [
+            'date' => '1992-10-07 21:05:00.000000',
+            'timezone_type' => 3,
+            'timezone' => 'Europe/Madrid',
+        ];
+        $expected = new \DateTime($dateTimeData['date'], new \DateTimeZone($dateTimeData['timezone']));
+
+        $arrayzedObject = new ArrayzedObject(\DateTime::class, $dateTimeData);
+
+        $instance = $this->instantiator->instantiate($arrayzedObject);
+
+        $this->assertEquals($expected, $instance);
     }
 
     /** @test */

@@ -11,8 +11,12 @@ class ArrayzedObjectInstantiator
      */
     public function instantiate(ArrayzedObject $arrayzedObject)
     {
-        $instance = $this->createClassInstance($arrayzedObject);
+        if ($this->isSpecialCase($arrayzedObject)) {
+            return $this->createSpecialCaseInstance($arrayzedObject);
+        }
 
+        $instance = $this->createClassInstance($arrayzedObject);
+        
         $this->fillClassInstance($instance, $arrayzedObject->getData());
 
         return $instance;
@@ -20,15 +24,15 @@ class ArrayzedObjectInstantiator
 
     private function createClassInstance(ArrayzedObject $arrayzedObject)
     {
-        $serializedObject = 'O:' . strlen($arrayzedObject->getClass()) . ':"' . $arrayzedObject->getClass() . '":0:{}';
+        $instance = (new \ReflectionClass($arrayzedObject->getClass()))->newInstanceWithoutConstructor();
 
-        return unserialize($serializedObject);
+        return $instance;
     }
 
     private function fillClassInstance($instance, $data)
     {
         $instantiator = $this;
-        $valueProcessor = function($value) use (&$valueProcessor, $instantiator) {
+        $valueProcessor = function ($value) use (&$valueProcessor, $instantiator) {
             if ($value instanceof ArrayzedObject) {
                 $value = $instantiator->instantiate($value);
             }
@@ -56,5 +60,25 @@ class ArrayzedObjectInstantiator
             $bindedSetObjectVarsClosure = \Closure::bind($setObjectVarsClosure, $instance, $class);
             $bindedSetObjectVarsClosure($data, $class, $valueProcessor);
         } while ($class = get_parent_class($class));
+    }
+
+    private function isSpecialCase(ArrayzedObject $arrayzedObject)
+    {
+        return is_subclass_of($arrayzedObject->getClass(), \DateTimeInterface::class);
+    }
+
+    private function createSpecialCaseInstance(ArrayzedObject $arrayzedObject)
+    {
+        $instance = (new \ReflectionClass($arrayzedObject->getClass()))->newInstanceWithoutConstructor();
+
+        $reflectionClass = new \ReflectionClass(\DateTime::class);
+        $dateTimeConstructor = $reflectionClass->getConstructor();
+
+        $data = $arrayzedObject->getData();
+        $date = isset($data['date']) ? $data['date'] : null;
+        $dateTimeZone = isset($data['timezone']) ? $data['timezone'] : null;
+        $dateTimeConstructor->invokeArgs($instance, [$date, new \DateTimeZone($dateTimeZone)]);
+
+        return $instance;
     }
 }

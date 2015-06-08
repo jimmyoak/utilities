@@ -69,7 +69,11 @@ class ArrayzedObjectInstantiator
 
     private function createSpecialCaseInstance(ArrayzedObject $arrayzedObject)
     {
-        $instance = (new \ReflectionClass($arrayzedObject->getClass()))->newInstanceWithoutConstructor();
+        try {
+            $instance = (new \ReflectionClass($arrayzedObject->getClass()))->newInstanceWithoutConstructor();
+        } catch (\ReflectionException $e) {
+            $instance = (new \ReflectionClass($arrayzedObject->getClass()))->newInstance();
+        }
 
         $reflectionClass = new \ReflectionClass(\DateTime::class);
         $dateTimeConstructor = $reflectionClass->getConstructor();

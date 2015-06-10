@@ -4,7 +4,7 @@ namespace JimmyOak\DataType;
 
 use JimmyOak\Collection\Collection;
 
-class ArrayzedObject extends Collection
+class ArrayedObject extends Collection
 {
     /** @var string */
     private $class;

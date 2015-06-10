@@ -2,11 +2,11 @@
 
 namespace JimmyOak\DataType;
 
-class ArrayzedObjectFactory
+class ArrayedObjectFactory
 {
     public function create($object)
     {
-        return new ArrayzedObject(get_class($object), $this->arrayzeObjectVars($object));
+        return new ArrayedObject(get_class($object), $this->arrayzeObjectVars($object));
     }
 
     private function arrayzeObjectVars($object)

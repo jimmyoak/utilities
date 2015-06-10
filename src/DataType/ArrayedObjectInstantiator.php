@@ -2,14 +2,14 @@
 
 namespace JimmyOak\DataType;
 
-class ArrayzedObjectInstantiator
+class ArrayedObjectInstantiator
 {
     /**
-     * @param ArrayzedObject $arrayzedObject
+     * @param ArrayedObject $arrayzedObject
      *
      * @return mixed
      */
-    public function instantiate(ArrayzedObject $arrayzedObject)
+    public function instantiate(ArrayedObject $arrayzedObject)
     {
         if ($this->isSpecialCase($arrayzedObject)) {
             return $this->createSpecialCaseInstance($arrayzedObject);
@@ -22,7 +22,7 @@ class ArrayzedObjectInstantiator
         return $instance;
     }
 
-    private function createClassInstance(ArrayzedObject $arrayzedObject)
+    private function createClassInstance(ArrayedObject $arrayzedObject)
     {
         $instance = (new \ReflectionClass($arrayzedObject->getClass()))->newInstanceWithoutConstructor();
 
@@ -33,7 +33,7 @@ class ArrayzedObjectInstantiator
     {
         $instantiator = $this;
         $valueProcessor = function ($value) use (&$valueProcessor, $instantiator) {
-            if ($value instanceof ArrayzedObject) {
+            if ($value instanceof ArrayedObject) {
                 $value = $instantiator->instantiate($value);
             }
 
@@ -62,12 +62,12 @@ class ArrayzedObjectInstantiator
         } while ($class = get_parent_class($class));
     }
 
-    private function isSpecialCase(ArrayzedObject $arrayzedObject)
+    private function isSpecialCase(ArrayedObject $arrayzedObject)
     {
         return is_subclass_of($arrayzedObject->getClass(), \DateTimeInterface::class);
     }
 
-    private function createSpecialCaseInstance(ArrayzedObject $arrayzedObject)
+    private function createSpecialCaseInstance(ArrayedObject $arrayzedObject)
     {
         try {
             $instance = (new \ReflectionClass($arrayzedObject->getClass()))->newInstanceWithoutConstructor();

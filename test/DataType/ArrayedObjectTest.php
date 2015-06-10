@@ -2,13 +2,13 @@
 
 namespace JimmyOak\Test\DataType;
 
-use JimmyOak\DataType\ArrayzedObject;
-use JimmyOak\DataType\ArrayzedObjectInstantiator;
-use JimmyOak\DataType\ReflectionArrayzedObjectInstantiator;
+use JimmyOak\DataType\ArrayedObject;
+use JimmyOak\DataType\ArrayedObjectInstantiator;
+use JimmyOak\DataType\ReflectionArrayedObjectInstantiator;
 use JimmyOak\Test\Collection\CollectionTest;
 use JimmyOak\Test\Value\DummyClass;
 
-class ArrayzedObjectTest extends CollectionTest
+class ArrayedObjectTest extends CollectionTest
 {
     /** @test */
     public function shouldGetClassNameAndData()
@@ -18,7 +18,7 @@ class ArrayzedObjectTest extends CollectionTest
             'someRandomData'
         ];
 
-        $arrayzedObject = new ArrayzedObject($class, $data);
+        $arrayzedObject = new ArrayedObject($class, $data);
 
         $this->assertSame($class, $arrayzedObject->getClass());
         $this->assertSame($data, $arrayzedObject->getData());

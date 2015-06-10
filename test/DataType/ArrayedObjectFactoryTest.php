@@ -2,31 +2,31 @@
 
 namespace JimmyOak\Test\DataType;
 
-use JimmyOak\DataType\ArrayzedObject;
-use JimmyOak\DataType\ArrayzedObjectFactory;
-use JimmyOak\DataType\ArrayzedObjectInstantiator;
+use JimmyOak\DataType\ArrayedObject;
+use JimmyOak\DataType\ArrayedObjectFactory;
+use JimmyOak\DataType\ArrayedObjectInstantiator;
 use JimmyOak\Test\Value\AnotherDummyClass;
 use JimmyOak\Test\Value\DummyClass;
 
-class ArrayzedObjectFactoryTest extends \PHPUnit_Framework_TestCase
+class ArrayedObjectFactoryTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var ArrayzedObjectFactory */
+    /** @var ArrayedObjectFactory */
     private $factory;
 
     protected function setUp()
     {
-        $this->factory = new ArrayzedObjectFactory();
+        $this->factory = new ArrayedObjectFactory();
     }
 
     /** @test */
-    public function shouldCreateArrayzedObjectFromObject()
+    public function shouldCreateArrayedObjectFromObject()
     {
         $expectedData = $this->getExpectedData();
         $object = new DummyClass();
 
         $arrayzedObject = $this->factory->create($object);
 
-        $this->assertInstanceOf(ArrayzedObject::class, $arrayzedObject);
+        $this->assertInstanceOf(ArrayedObject::class, $arrayzedObject);
         $this->assertSame(DummyClass::class, $arrayzedObject->getClass());
         $this->assertEquals($expectedData, $arrayzedObject->getData());
     }
@@ -38,19 +38,19 @@ class ArrayzedObjectFactoryTest extends \PHPUnit_Framework_TestCase
             'aProtectedProperty' => 1234,
             'aPublicProperty' => 'ANOTHER STRING',
             'anObject' =>
-                new ArrayzedObject(AnotherDummyClass::class, [
+                new ArrayedObject(AnotherDummyClass::class, [
                     'aValue' => 'Jimmy',
                     'anotherValue' => 'Kane',
                     'oneMoreValue' => 'Oak',
                 ]),
             'anArrayOfObjects' =>
                 array(
-                    new ArrayzedObject(AnotherDummyClass::class, [
+                    new ArrayedObject(AnotherDummyClass::class, [
                         'aValue' => 'Jimmy',
                         'anotherValue' => 'Kane',
                         'oneMoreValue' => 'Oak',
                     ]),
-                    new ArrayzedObject(AnotherDummyClass::class, [
+                    new ArrayedObject(AnotherDummyClass::class, [
                         'aValue' => 'Jimmy',
                         'anotherValue' => 'Kane',
                         'oneMoreValue' => 'Oak',

@@ -2,19 +2,19 @@
 
 namespace JimmyOak\Test\DataType;
 
-use JimmyOak\DataType\ArrayzedObject;
-use JimmyOak\DataType\ArrayzedObjectFactory;
-use JimmyOak\DataType\ArrayzedObjectInstantiator;
+use JimmyOak\DataType\ArrayedObject;
+use JimmyOak\DataType\ArrayedObjectFactory;
+use JimmyOak\DataType\ArrayedObjectInstantiator;
 use JimmyOak\Test\Value\DummyClass;
 
-class ArrayzedObjectInstantiatorTest extends \PHPUnit_Framework_TestCase
+class ArrayedObjectInstantiatorTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var ArrayzedObjectInstantiator */
+    /** @var ArrayedObjectInstantiator */
     private $instantiator;
 
     protected function setUp()
     {
-        $this->instantiator = new ArrayzedObjectInstantiator();
+        $this->instantiator = new ArrayedObjectInstantiator();
     }
 
     /** @test */
@@ -27,7 +27,7 @@ class ArrayzedObjectInstantiatorTest extends \PHPUnit_Framework_TestCase
         ];
         $expected = new \DateTime($dateTimeData['date'], new \DateTimeZone($dateTimeData['timezone']));
 
-        $arrayzedObject = new ArrayzedObject(\DateTime::class, $dateTimeData);
+        $arrayzedObject = new ArrayedObject(\DateTime::class, $dateTimeData);
 
         $instance = $this->instantiator->instantiate($arrayzedObject);
 
@@ -45,7 +45,7 @@ class ArrayzedObjectInstantiatorTest extends \PHPUnit_Framework_TestCase
             'aParentProperty' => 'PARDUMMY',
         ];
 
-        $arrayzedObject = new ArrayzedObject($class, $data);
+        $arrayzedObject = new ArrayedObject($class, $data);
         /** @var DummyClass $instance */
         $instance = $this->instantiator->instantiate($arrayzedObject);
 
@@ -56,11 +56,11 @@ class ArrayzedObjectInstantiatorTest extends \PHPUnit_Framework_TestCase
     }
 
     /** @test */
-    public function shouldInstantiateRecursiveArrayzedObjects()
+    public function shouldInstantiateRecursiveArrayedObjects()
     {
         $class = DummyClass::class;
         $anArrayOfObjects = [
-            new ArrayzedObject(DummyClass::class, [
+            new ArrayedObject(DummyClass::class, [
                 'aPrivateProperty' => 'DUMMYPRI',
                 'aProtectedProperty' => 'DUMMYPRO',
                 'aPublicProperty' => 'DUMMYPUB',
@@ -71,13 +71,13 @@ class ArrayzedObjectInstantiatorTest extends \PHPUnit_Framework_TestCase
             'aProtectedProperty' => 'PRODUMMY',
             'aPublicProperty' => 'PUBDUMMY',
             'aParentProperty' => 'PARDUMMY',
-            'anObject' => new ArrayzedObject($class, [
+            'anObject' => new ArrayedObject($class, [
                 'aPrivateProperty' => 'CHIPRIDUMMY'
             ]),
             'anArrayOfObjects' => $anArrayOfObjects
         ];
 
-        $arrayzedObject = new ArrayzedObject($class, $data);
+        $arrayzedObject = new ArrayedObject($class, $data);
         /** @var DummyClass $instance */
         $instance = $this->instantiator->instantiate($arrayzedObject);
 

@@ -18,9 +18,9 @@ class ArrayedObjectTest extends CollectionTest
             'someRandomData'
         ];
 
-        $arrayzedObject = new ArrayedObject($class, $data);
+        $arrayedObject = new ArrayedObject($class, $data);
 
-        $this->assertSame($class, $arrayzedObject->getClass());
-        $this->assertSame($data, $arrayzedObject->getData());
+        $this->assertSame($class, $arrayedObject->getClass());
+        $this->assertSame($data, $arrayedObject->getData());
     }
 }

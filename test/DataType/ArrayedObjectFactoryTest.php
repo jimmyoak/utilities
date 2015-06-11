@@ -24,11 +24,11 @@ class ArrayedObjectFactoryTest extends \PHPUnit_Framework_TestCase
         $expectedData = $this->getExpectedData();
         $object = new DummyClass();
 
-        $arrayzedObject = $this->factory->create($object);
+        $arrayedObject = $this->factory->create($object);
 
-        $this->assertInstanceOf(ArrayedObject::class, $arrayzedObject);
-        $this->assertSame(DummyClass::class, $arrayzedObject->getClass());
-        $this->assertEquals($expectedData, $arrayzedObject->getData());
+        $this->assertInstanceOf(ArrayedObject::class, $arrayedObject);
+        $this->assertSame(DummyClass::class, $arrayedObject->getClass());
+        $this->assertEquals($expectedData, $arrayedObject->getData());
     }
 
     private function getExpectedData()

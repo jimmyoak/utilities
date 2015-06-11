@@ -11,11 +11,11 @@ class ArrayedObjectFactory
 
     private function arrayzeObjectVars($object)
     {
-        $arrayzedObjectFactory = $this;
+        $arrayedObjectFactory = $this;
 
-        $valueProcessor = function ($value) use (&$valueProcessor, $arrayzedObjectFactory) {
+        $valueProcessor = function ($value) use (&$valueProcessor, $arrayedObjectFactory) {
             if (is_object($value)) {
-                $value = $arrayzedObjectFactory->create($value);
+                $value = $arrayedObjectFactory->create($value);
             } elseif (is_array($value)) {
                 foreach ($value as &$innerValue) {
                     $innerValue = $valueProcessor($innerValue);

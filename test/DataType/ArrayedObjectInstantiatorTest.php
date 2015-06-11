@@ -27,9 +27,39 @@ class ArrayedObjectInstantiatorTest extends \PHPUnit_Framework_TestCase
         ];
         $expected = new \DateTime($dateTimeData['date'], new \DateTimeZone($dateTimeData['timezone']));
 
-        $arrayzedObject = new ArrayedObject(\DateTime::class, $dateTimeData);
+        $arrayedObject = new ArrayedObject(\DateTime::class, $dateTimeData);
 
-        $instance = $this->instantiator->instantiate($arrayzedObject);
+        $instance = $this->instantiator->instantiate($arrayedObject);
+
+        $this->assertEquals($expected, $instance);
+    }
+
+    /** @test */
+    public function shouldCreateAndFillDateIntervalInstance()
+    {
+        $dateIntervalData = [
+            'y' => 0,
+            'm' => 0,
+            'd' => 0,
+            'h' => 1,
+            'i' => 25,
+            's' => 0,
+            'weekday' => 0,
+            'weekday_behavior' => 0,
+            'first_last_day_of' => 0,
+            'invert' => 0,
+            'days' => false,
+            'special_type' => 0,
+            'special_amount' => 0,
+            'have_weekday_relative' => 0,
+            'have_special_relative' => 0,
+        ];
+
+        $expected = new \DateInterval('PT1H25M');
+
+        $arrayedObject = new ArrayedObject(\DateInterval::class, $dateIntervalData);
+
+        $instance = $this->instantiator->instantiate($arrayedObject);
 
         $this->assertEquals($expected, $instance);
     }
@@ -45,9 +75,9 @@ class ArrayedObjectInstantiatorTest extends \PHPUnit_Framework_TestCase
             'aParentProperty' => 'PARDUMMY',
         ];
 
-        $arrayzedObject = new ArrayedObject($class, $data);
+        $arrayedObject = new ArrayedObject($class, $data);
         /** @var DummyClass $instance */
-        $instance = $this->instantiator->instantiate($arrayzedObject);
+        $instance = $this->instantiator->instantiate($arrayedObject);
 
         $this->assertSame($data['aPrivateProperty'], $instance->getAPrivateProperty());
         $this->assertSame($data['aProtectedProperty'], $instance->getAProtectedProperty());
@@ -77,9 +107,9 @@ class ArrayedObjectInstantiatorTest extends \PHPUnit_Framework_TestCase
             'anArrayOfObjects' => $anArrayOfObjects
         ];
 
-        $arrayzedObject = new ArrayedObject($class, $data);
+        $arrayedObject = new ArrayedObject($class, $data);
         /** @var DummyClass $instance */
-        $instance = $this->instantiator->instantiate($arrayzedObject);
+        $instance = $this->instantiator->instantiate($arrayedObject);
 
         $this->assertInstanceOf($class, $instance);
         $this->assertSame($data['aPrivateProperty'], $instance->getAPrivateProperty());

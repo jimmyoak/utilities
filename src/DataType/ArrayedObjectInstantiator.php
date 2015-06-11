@@ -4,27 +4,37 @@ namespace JimmyOak\DataType;
 
 class ArrayedObjectInstantiator
 {
+    private $specialCasesClasses = [
+        \DateTimeInterface::class,
+        \DateInterval::class,
+    ];
+
+    private $specialCaseClassFunctionMap = [
+        \DateTimeInterface::class => 'createDateTimeInterfaceInstance',
+        \DateInterval::class => 'createDateIntervalInstance',
+    ];
+
     /**
-     * @param ArrayedObject $arrayzedObject
+     * @param ArrayedObject $arrayedObject
      *
      * @return mixed
      */
-    public function instantiate(ArrayedObject $arrayzedObject)
+    public function instantiate(ArrayedObject $arrayedObject)
     {
-        if ($this->isSpecialCase($arrayzedObject)) {
-            return $this->createSpecialCaseInstance($arrayzedObject);
+        if ($this->isSpecialCase($arrayedObject)) {
+            return $this->createSpecialCaseInstance($arrayedObject);
         }
 
-        $instance = $this->createClassInstance($arrayzedObject);
-        
-        $this->fillClassInstance($instance, $arrayzedObject->getData());
+        $instance = $this->createClassInstance($arrayedObject);
+
+        $this->fillClassInstance($instance, $arrayedObject->getData());
 
         return $instance;
     }
 
-    private function createClassInstance(ArrayedObject $arrayzedObject)
+    private function createClassInstance(ArrayedObject $arrayedObject)
     {
-        $instance = (new \ReflectionClass($arrayzedObject->getClass()))->newInstanceWithoutConstructor();
+        $instance = (new \ReflectionClass($arrayedObject->getClass()))->newInstanceWithoutConstructor();
 
         return $instance;
     }
@@ -62,26 +72,67 @@ class ArrayedObjectInstantiator
         } while ($class = get_parent_class($class));
     }
 
-    private function isSpecialCase(ArrayedObject $arrayzedObject)
+    private function getSpecialCaseClass(ArrayedObject $arrayedObject)
     {
-        return is_subclass_of($arrayzedObject->getClass(), \DateTimeInterface::class);
+        $class = $arrayedObject->getClass();
+        foreach ($this->specialCasesClasses as $specialCaseClass) {
+            if (is_subclass_of($class, $specialCaseClass) || $class === $specialCaseClass) {
+                return $specialCaseClass;
+            }
+        }
+
+        return null;
     }
 
-    private function createSpecialCaseInstance(ArrayedObject $arrayzedObject)
+    private function isSpecialCase(ArrayedObject $arrayedObject)
+    {
+        return (bool) $this->getSpecialCaseClass($arrayedObject);
+    }
+
+    private function createSpecialCaseInstance(ArrayedObject $arrayedObject)
+    {
+        $specialCaseClass = $this->getSpecialCaseClass($arrayedObject);
+        $functionName = $this->specialCaseClassFunctionMap[$specialCaseClass];
+
+        return $this->$functionName($arrayedObject);
+    }
+
+    private function createDateTimeInterfaceInstance(ArrayedObject $arrayedObject)
     {
         try {
-            $instance = (new \ReflectionClass($arrayzedObject->getClass()))->newInstanceWithoutConstructor();
+            $instance = (new \ReflectionClass($arrayedObject->getClass()))->newInstanceWithoutConstructor();
         } catch (\ReflectionException $e) {
-            $instance = (new \ReflectionClass($arrayzedObject->getClass()))->newInstance();
+            $instance = (new \ReflectionClass($arrayedObject->getClass()))->newInstance();
         }
 
         $reflectionClass = new \ReflectionClass(\DateTime::class);
         $dateTimeConstructor = $reflectionClass->getConstructor();
 
-        $data = $arrayzedObject->getData();
+        $data = $arrayedObject->getData();
         $date = isset($data['date']) ? $data['date'] : null;
         $dateTimeZone = isset($data['timezone']) ? $data['timezone'] : null;
         $dateTimeConstructor->invokeArgs($instance, [$date, new \DateTimeZone($dateTimeZone)]);
+
+        return $instance;
+    }
+
+    private function createDateIntervalInstance(ArrayedObject $arrayedObject)
+    {
+        try {
+            $instance = (new \ReflectionClass($arrayedObject->getClass()))->newInstanceWithoutConstructor();
+        } catch (\ReflectionException $e) {
+            $instance = (new \ReflectionClass($arrayedObject->getClass()))->newInstance();
+        }
+
+        $reflectionClass = new \ReflectionClass($instance);
+
+        $dateIntervalConstructor = $reflectionClass->getConstructor();
+        $dateIntervalConstructor->invokeArgs($instance, ['P0D']);
+
+        $data = $arrayedObject->getData();
+        foreach ($data as $property => $value) {
+            $instance->$property = $value;
+        }
 
         return $instance;
     }

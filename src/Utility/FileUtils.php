@@ -69,7 +69,7 @@ class FileUtils extends UtilsBase
     {
         $pathLength = strlen($path);
         $pathLastChar = $path[$pathLength - 1];
-        $path = $pathLastChar === DIRECTORY_SEPARATOR ? substr($path, -1) : $path;
+        $path = $pathLastChar === DIRECTORY_SEPARATOR ? substr($path, 0, -1) : $path;
 
         return $path;
     }

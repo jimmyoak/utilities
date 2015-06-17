@@ -4,6 +4,21 @@ namespace JimmyOak\DataType;
 
 class ArrayedObjectFactory
 {
+    private function __construct()
+    {
+    }
+
+    public static function instance()
+    {
+        static $instance;
+
+        if (null === $instance) {
+            $instance = new static();
+        }
+
+        return $instance;
+    }
+
     public function create($object)
     {
         return new ArrayedObject(get_class($object), $this->arrayzeObjectVars($object));

@@ -15,7 +15,16 @@ class ArrayedObjectFactoryTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->factory = new ArrayedObjectFactory();
+        $this->factory = ArrayedObjectFactory::instance();
+    }
+
+
+    /** @test */
+    public function shouldBeSingleton()
+    {
+        $isConstructorCallable = is_callable([$this->factory, '__construct']);
+
+        $this->assertFalse($isConstructorCallable);
     }
 
     /** @test */

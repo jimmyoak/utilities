@@ -14,7 +14,15 @@ class ArrayedObjectInstantiatorTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->instantiator = new ArrayedObjectInstantiator();
+        $this->instantiator = ArrayedObjectInstantiator::instance();
+    }
+
+    /** @test */
+    public function shouldBeSingleton()
+    {
+        $isConstructorCallable = is_callable([$this->instantiator, '__construct']);
+
+        $this->assertFalse($isConstructorCallable);
     }
 
     /** @test */

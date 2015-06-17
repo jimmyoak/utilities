@@ -14,6 +14,21 @@ class ArrayedObjectInstantiator
         \DateInterval::class => 'createDateIntervalInstance',
     ];
 
+    private function __construct()
+    {
+    }
+
+    public static function instance()
+    {
+        static $instance;
+
+        if (null === $instance) {
+            $instance = new static();
+        }
+
+        return $instance;
+    }
+
     /**
      * @param ArrayedObject $arrayedObject
      *

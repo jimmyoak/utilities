@@ -142,7 +142,7 @@ class ArrayedObjectInstantiator
             $dateIntervalConstructor = $reflectionClass->getConstructor();
             $dateIntervalConstructor->invokeArgs($instance, $constructionData);
         } catch (\ReflectionException $e) {
-            $instance = (new \ReflectionClass($arrayedObject->getClass()))->newInstance($constructionData);
+            $instance = (new \ReflectionClass($arrayedObject->getClass()))->newInstanceArgs($constructionData);
         }
 
         $data = $arrayedObject->getData();

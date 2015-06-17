@@ -3,9 +3,12 @@
     "authors": [
         {
             "name": "Adrián Robles",
+            "email": "adrian.robles.maiz@gmail.com",
             "homepage": "http://github.com/jimmyoak"
         }
     ],
+    "license": "MIT",
+    "keywords": ["utilities", "arrayed", "instantiator", "jimmy", "jimmyoak"],
     "require": {
         "php": ">=5.4.0"
     },

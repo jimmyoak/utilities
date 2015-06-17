@@ -1,6 +1,7 @@
 .idea
 .DS_Store
 bin
+build
 composer.lock
 composer.phar
 vendor

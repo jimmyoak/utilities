@@ -133,16 +133,17 @@ class ArrayedObjectInstantiator
 
     private function createDateIntervalInstance(ArrayedObject $arrayedObject)
     {
+        $constructionData = ['P0D'];
         try {
             $instance = (new \ReflectionClass($arrayedObject->getClass()))->newInstanceWithoutConstructor();
+
+            $reflectionClass = new \ReflectionClass($instance);
+
+            $dateIntervalConstructor = $reflectionClass->getConstructor();
+            $dateIntervalConstructor->invokeArgs($instance, $constructionData);
         } catch (\ReflectionException $e) {
-            $instance = (new \ReflectionClass($arrayedObject->getClass()))->newInstance();
+            $instance = (new \ReflectionClass($arrayedObject->getClass()))->newInstance($constructionData);
         }
-
-        $reflectionClass = new \ReflectionClass($instance);
-
-        $dateIntervalConstructor = $reflectionClass->getConstructor();
-        $dateIntervalConstructor->invokeArgs($instance, ['P0D']);
 
         $data = $arrayedObject->getData();
         foreach ($data as $property => $value) {

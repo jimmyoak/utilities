@@ -90,8 +90,9 @@ class ArrayedObjectInstantiator
     private function getSpecialCaseClass(ArrayedObject $arrayedObject)
     {
         $class = $arrayedObject->getClass();
+        $reflectionClass = new \ReflectionClass($class);
         foreach ($this->specialCasesClasses as $specialCaseClass) {
-            if (is_subclass_of($class, $specialCaseClass) || $class === $specialCaseClass) {
+            if ($reflectionClass->isSubclassOf($specialCaseClass) || $class === $specialCaseClass) {
                 return $specialCaseClass;
             }
         }

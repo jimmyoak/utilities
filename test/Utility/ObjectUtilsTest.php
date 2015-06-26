@@ -46,7 +46,7 @@ class ObjectUtilsTest extends UtilsBaseTest
     }
 
     /** @test */
-    public function transforms_object_into_array()
+    public function transformsObjectIntoArray()
     {
         $result = $this->utils->toArray($this->objectToParse);
 
@@ -54,7 +54,7 @@ class ObjectUtilsTest extends UtilsBaseTest
     }
 
     /** @test */
-    public function transforms_object_to_xml_string()
+    public function transformsObjectToXmlString()
     {
         $result = $this->utils->toXmlString($this->objectToParse);
 
@@ -62,7 +62,7 @@ class ObjectUtilsTest extends UtilsBaseTest
     }
 
     /** @test */
-    public function transforms_object_to_xml()
+    public function transformsObjectToXml()
     {
         $result = $this->utils->toXml($this->objectToParse);
 
@@ -70,7 +70,7 @@ class ObjectUtilsTest extends UtilsBaseTest
     }
 
     /** @test */
-    public function transforms_object_to_array_deeply()
+    public function transformsObjectToArrayDeeply()
     {
         $object = new DummyClass();
         $expected = [

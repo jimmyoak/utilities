@@ -7,7 +7,7 @@ class EnumTest extends \PHPUnit_Framework_TestCase
     const A_NOT_VALID_VALUE = 'A NOT VALID VALUE';
 
     /** @test */
-    public function should_return_type()
+    public function shouldReturnType()
     {
         $value = TestableEnum::TESTABLE_VALUE1;
         $enum = new TestableEnum($value);
@@ -16,7 +16,7 @@ class EnumTest extends \PHPUnit_Framework_TestCase
     }
 
     /** @test */
-    public function should_return_stringified_type()
+    public function shouldReturnStringifiedType()
     {
         $value = TestableEnum::TESTABLE_VALUE1;
         $enum = new TestableEnum($value);
@@ -25,7 +25,7 @@ class EnumTest extends \PHPUnit_Framework_TestCase
     }
 
     /** @test */
-    public function should_throw_exception_on_not_a_valid_enum_value()
+    public function shouldThrowExceptionOnNotAValidEnumValue()
     {
         $this->setExpectedException(\InvalidArgumentException::class);
         new TestableEnum(self::A_NOT_VALID_VALUE);

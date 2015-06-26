@@ -19,7 +19,7 @@ class UtilsTest extends UtilsBaseTest
     }
 
     /** @test */
-    public function container_has_instances_of_utils()
+    public function containerHasInstancesOfUtils()
     {
         $this->assertInstanceOf(ArrayUtils::class, $this->utils->array);
         $this->assertInstanceOf(FileUtils::class, $this->utils->file);

@@ -10,7 +10,7 @@ abstract class UtilsBaseTest extends \PHPUnit_Framework_TestCase
     protected $utils;
 
     /** @test */
-    public function utils_is_singleton_and_cannot_be_publicly_constructed_nor_cloned()
+    public function utilsIsSingletonAndCannotBePubliclyConstructedNorCloned()
     {
         $reflectionClass = new \ReflectionClass($this->utils);
         $constructor = $reflectionClass->getConstructor();

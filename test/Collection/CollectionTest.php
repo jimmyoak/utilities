@@ -3,6 +3,7 @@
 namespace JimmyOak\Test\Collection;
 
 use JimmyOak\Collection\Collection;
+use JimmyOak\Collection\TypedCollection;
 
 class CollectionTest extends \PHPUnit_Framework_TestCase
 {

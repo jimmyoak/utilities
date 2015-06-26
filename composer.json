@@ -8,7 +8,7 @@
         }
     ],
     "license": "MIT",
-    "keywords": ["utilities", "arrayed", "instantiator", "jimmy", "jimmyoak"],
+    "keywords": ["utilities", "collection", "jimmy", "jimmyoak"],
     "require": {
         "php": ">=5.5.0"
     },
@@ -17,12 +17,18 @@
     },
     "autoload": {
         "psr-4": {
-            "JimmyOak\\": "src/"
+            "JimmyOak\\Collection\\": "src/Collection/",
+            "JimmyOak\\DataType\\": "src/DataType/",
+            "JimmyOak\\Exception\\": "src/Exception/",
+            "JimmyOak\\Utility\\": "src/Utility/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "JimmyOak\\Test\\": "test/"
+            "JimmyOak\\Test\\Collection\\": "test/Collection/",
+            "JimmyOak\\Test\\DataType\\": "test/DataType/",
+            "JimmyOak\\Test\\Utility\\": "test/Utility/",
+            "JimmyOak\\Test\\Value\\": "test/Value/"
         }
     },
     "config": {

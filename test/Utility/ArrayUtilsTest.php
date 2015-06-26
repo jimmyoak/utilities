@@ -42,7 +42,7 @@ class ArrayUtilsTest extends UtilsBaseTest
     }
 
     /** @test */
-    public function array_flatten_makes_array_unidimensional()
+    public function arrayFlattenMakesArrayUnidimensional()
     {
         $expected = [1, 2, 3, 4, 5, 6, 7, 8, 9];
         $toFlat = [1, 2, 3, [4, 5, 6, [7, 8, 9]]];
@@ -53,7 +53,7 @@ class ArrayUtilsTest extends UtilsBaseTest
     }
 
     /** @test */
-    public function array_flatten_makes_array_unidimensional_preserving_keys()
+    public function arrayFlattenMakesArrayUnidimensionalPreservingKeys()
     {
         $expected = [3, 'a' => 1, 'b' => 2, 'c' => 3];
         $toFlat = [1, 'a' => 1, 'b' => 1, 'c' => 1, [2, 'b' => 2, 'c' => 2, [3, 'c' => 3]]];
@@ -64,7 +64,7 @@ class ArrayUtilsTest extends UtilsBaseTest
     }
 
     /** @test */
-    public function array_flatten_makes_array_unidimensional_preserveing_associative_keys()
+    public function arrayFlattenMakesArrayUnidimensionalPreserveingAssociativeKeys()
     {
         $expected = [1, 'a' => 1, 'b' => 2, 'c' => 3, 2, 3];
         $toFlat = [1, 'a' => 1, 'b' => 1, 'c' => 1, [2, 'b' => 2, 'c' => 2, [3, 'c' => 3]]];
@@ -75,7 +75,7 @@ class ArrayUtilsTest extends UtilsBaseTest
     }
 
     /** @test */
-    public function array_converts_to_xml_string()
+    public function arrayConvertsToXmlString()
     {
         $result = $this->utils->toXmlString($this->arrayToParseAsXml);
 
@@ -83,7 +83,7 @@ class ArrayUtilsTest extends UtilsBaseTest
     }
 
     /** @test */
-    public function array_converts_to_simple_xml_element()
+    public function arrayConvertsToSimpleXmlElement()
     {
         $result = $this->utils->toXml($this->arrayToParseAsXml);
 

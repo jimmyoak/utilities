@@ -15,7 +15,7 @@ class StringUtilsTest extends UtilsBaseTest
     }
 
     /** @test */
-    public function string_begins_with()
+    public function stringBeginsWith()
     {
         $resultOk = $this->utils->beginsWith('Hello', 'He');
         $resultOk2 = $this->utils->beginsWith('Héllo', 'Hé');
@@ -27,7 +27,7 @@ class StringUtilsTest extends UtilsBaseTest
     }
 
     /** @test */
-    public function string_begins_with_case_insensitive()
+    public function stringBeginsWithCaseInsensitive()
     {
         $resultOk = $this->utils->beginsWith('Hello', 'hel', StringUtils::CASE_INSENSITIVE);
         $resultKo = $this->utils->beginsWith('Hello', 'No', StringUtils::CASE_INSENSITIVE);
@@ -37,7 +37,7 @@ class StringUtilsTest extends UtilsBaseTest
     }
 
     /** @test */
-    public function string_begins_with_accent_insensitive()
+    public function stringBeginsWithAccentInsensitive()
     {
         $resultAI = $this->utils->beginsWith('HéllÓ', 'Hel', StringUtils::ACCENT_INSENSITIVE);
         $resultAI2 = $this->utils->beginsWith('HéllÓ', 'Hél', StringUtils::ACCENT_INSENSITIVE);
@@ -49,7 +49,7 @@ class StringUtilsTest extends UtilsBaseTest
     }
 
     /** @test */
-    public function string_remove_accents()
+    public function stringRemoveAccents()
     {
         $result = $this->utils->removeAccents('HéllÓ');
 
@@ -57,7 +57,7 @@ class StringUtilsTest extends UtilsBaseTest
     }
 
     /** @test */
-    public function string_ends_with()
+    public function stringEndsWithNeedle()
     {
         $resultOk = $this->utils->endsWith('Hello', 'llo');
         $resultOk2 = $this->utils->endsWith('Hélló', 'lló');
@@ -69,7 +69,7 @@ class StringUtilsTest extends UtilsBaseTest
     }
 
     /** @test */
-    public function string_ends_with_case_insensitive()
+    public function stringEndsWithCaseInsensitive()
     {
         $resultOk = $this->utils->endsWith('Hello', 'llo', StringUtils::CASE_INSENSITIVE);
         $resultKo = $this->utils->endsWith('Hello', 'No', StringUtils::CASE_INSENSITIVE);
@@ -79,7 +79,7 @@ class StringUtilsTest extends UtilsBaseTest
     }
 
     /** @test */
-    public function string_ends_with_accent_insensitive()
+    public function stringEndsWithAccentInsensitive()
     {
         $resultAI = $this->utils->endsWith('HéllÓ', 'llO', StringUtils::ACCENT_INSENSITIVE);
         $resultAI2 = $this->utils->endsWith('HéllÓ', 'llÓ', StringUtils::ACCENT_INSENSITIVE);
@@ -91,7 +91,7 @@ class StringUtilsTest extends UtilsBaseTest
     }
 
     /** @test */
-    public function removes_extra_spaces()
+    public function removesExtraSpaces()
     {
         $result = $this->utils->removeExtraSpaces(' Hello,  my      name is   Jimmy  ');
 
@@ -100,7 +100,7 @@ class StringUtilsTest extends UtilsBaseTest
     }
 
     /** @test */
-    public function string_is_url()
+    public function stringIsUrl()
     {
         $isUrl = $this->utils->isUrl('http://www.youtube.com/watch?v=4DfG4G6h6HD');
         $isNotUrl = $this->utils->isUrl('asdfsdfsdfas');
@@ -110,7 +110,7 @@ class StringUtilsTest extends UtilsBaseTest
     }
 
     /** @test */
-    public function string_is_email()
+    public function stringIsEmail()
     {
         $isEmail = $this->utils->isEmail('test.email@domain.com');
         $isNotEmail = $this->utils->isEmail('http://www.google.es');

@@ -13,8 +13,7 @@
         stopOnIncomplete="false"
         stopOnSkipped="false"
         syntaxCheck="true"
-        verbose="true"
-        bootstrap="phpunit_bootstrap.php">
+        verbose="true">
     <php>
         <ini name="intl.default_locale" value="en_US.UTF-8"/>
         <ini name="intl.error_level" value="0"/>

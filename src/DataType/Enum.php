@@ -53,7 +53,7 @@ abstract class Enum
      */
     private function guardAgainstValueNotInValidConstants($type)
     {
-        if (false === in_array($type, $this->getConstList(), true)) {
+        if (!in_array($type, self::getConstList(), true)) {
             throw new \InvalidArgumentException('Provided value is not valid');
         }
     }

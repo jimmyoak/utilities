@@ -39,13 +39,13 @@ abstract class Enum
      */
     public static function getConstList()
     {
-        static $constants = null;
+        static $constants = [];
 
-        if (null === $constants) {
-            $constants = (new \ReflectionClass(static::class))->getConstants();
+        if (!isset($constants[static::class])) {
+            $constants[static::class] = (new \ReflectionClass(static::class))->getConstants();
         }
 
-        return $constants;
+        return $constants[static::class];
     }
 
     /**

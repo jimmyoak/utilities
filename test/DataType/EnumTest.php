@@ -37,6 +37,22 @@ class EnumTest extends \PHPUnit_Framework_TestCase
     }
 
     /** @test */
+    public function shouldGetConstantsListForMultipleClasses()
+    {
+        $constants = TestableEnum::getConstList();
+        $anotherConstants = AnotherTestableEnum::getConstList();
+
+        $this->assertSame([
+                'TESTABLE_VALUE1' => 0,
+                'TESTABLE_VALUE2' => 1,
+            ], $constants);
+        $this->assertSame([
+                'TESTABLE_VALUE3' => 0,
+                'TESTABLE_VALUE4' => 1,
+            ], $anotherConstants);
+    }
+
+    /** @test */
     public function shouldThrowExceptionOnNotAValidEnumValue()
     {
         $this->setExpectedException(\InvalidArgumentException::class);

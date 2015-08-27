@@ -7,12 +7,12 @@ class EnumTest extends \PHPUnit_Framework_TestCase
     const A_NOT_VALID_VALUE = 'A NOT VALID VALUE';
 
     /** @test */
-    public function shouldReturnType()
+    public function shouldReturnValue()
     {
         $value = TestableEnum::TESTABLE_VALUE1;
         $enum = new TestableEnum($value);
 
-        $this->assertSame($value, $enum->type());
+        $this->assertSame($value, $enum->value());
     }
 
     /** @test */

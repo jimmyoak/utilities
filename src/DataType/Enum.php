@@ -7,23 +7,23 @@ abstract class Enum
     /**
      * @var string
      */
-    private $type;
+    private $value;
 
     /**
-     * @param mixed $type
+     * @param mixed $value
      */
-    public function __construct($type)
+    public function __construct($value)
     {
-        $this->guardAgainstValueNotInValidConstants($type);
-        $this->type = $type;
+        $this->guardAgainstValueNotInValidConstants($value);
+        $this->value = $value;
     }
 
     /**
      * @return string
      */
-    public function type()
+    public function value()
     {
-        return $this->type;
+        return $this->value;
     }
 
     /**
@@ -31,7 +31,7 @@ abstract class Enum
      */
     public function __toString()
     {
-        return (string) $this->type;
+        return (string) $this->value;
     }
 
     /**

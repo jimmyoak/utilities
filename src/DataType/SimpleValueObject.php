@@ -5,14 +5,14 @@ namespace JimmyOak\DataType;
 abstract class SimpleValueObject
 {
     /**
-     * @var string|int|null|...
+     * @var mixed
      */
     private $value;
 
     /**
      * SimpleValueObject constructor.
      *
-     * @param int|null|string $value
+     * @param mixed $value
      */
     public function __construct($value)
     {

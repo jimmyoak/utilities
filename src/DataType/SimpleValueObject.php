@@ -37,7 +37,7 @@ abstract class SimpleValueObject
         return $this->value() === $object->value();
     }
 
-    protected function mutate($newValue)
+    protected function duplicateWith($newValue)
     {
         return new static($newValue);
     }

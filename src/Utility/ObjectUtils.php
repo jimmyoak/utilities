@@ -4,6 +4,9 @@ namespace JimmyOak\Utility;
 
 class ObjectUtils extends UtilsBase
 {
+    const SHALLOW = false;
+    const DEEP = true;
+
     /** @var ArrayUtils */
     private $arrayUtils;
 
@@ -18,29 +21,31 @@ class ObjectUtils extends UtilsBase
      *
      * @return array
      */
-    public function toArray($object, $deep = false)
+    public function toArray($object, $deep = self::SHALLOW)
     {
         return $deep ? $this->toDeepArray($object) : $this->toShallowArray($object);
     }
 
     /**
      * @param object $object
+     * @param bool $deep
      *
      * @return string
      */
-    public function toXmlString($object)
+    public function toXmlString($object, $deep = self::SHALLOW)
     {
-        return $this->arrayUtils->toXmlString($this->toArray($object));
+        return $this->arrayUtils->toXmlString($this->toArray($object, $deep));
     }
 
     /**
      * @param object $objectToParse
+     * @param bool $deep
      *
      * @return \SimpleXMLElement
      */
-    public function toXml($objectToParse)
+    public function toXml($objectToParse, $deep = self::SHALLOW)
     {
-        return simplexml_load_string($this->toXmlString($objectToParse));
+        return simplexml_load_string($this->toXmlString($objectToParse, $deep));
     }
 
     private function getAllObjectVars($object)

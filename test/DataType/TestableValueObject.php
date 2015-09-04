@@ -8,6 +8,6 @@ class TestableValueObject extends SimpleValueObject
 {
     public function modify($value)
     {
-        return $this->mutate($value);
+        return $this->duplicateWith($value);
     }
 }

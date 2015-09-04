@@ -28,7 +28,7 @@
         - [IsUrl and IsEmail](#isurl-and-isemail)
     - [FileUtils](#fileutils)
         - [ExtensionIs](#extensionis)
-        - [ScanDir](#ScanDir)
+        - [ScanDir](#scandir)
 - [Quality](#quality)
 - [Contribute](#contribute)
 - [Authors](#authors)

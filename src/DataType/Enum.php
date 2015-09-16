@@ -2,36 +2,15 @@
 
 namespace JimmyOak\DataType;
 
-abstract class Enum
+abstract class Enum extends SimpleValueObject
 {
-    /**
-     * @var string
-     */
-    private $value;
-
     /**
      * @param mixed $value
      */
     public function __construct($value)
     {
         $this->guardAgainstValueNotInValidConstants($value);
-        $this->value = $value;
-    }
-
-    /**
-     * @return string
-     */
-    public function value()
-    {
-        return $this->value;
-    }
-
-    /**
-     * @return string
-     */
-    public function __toString()
-    {
-        return (string) $this->value;
+        parent::__construct($value);
     }
 
     /**

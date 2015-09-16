@@ -20,23 +20,36 @@ abstract class SimpleValueObject
     }
 
     /**
-     * @return int|null|string
+     * @return mixed
      */
     public function value()
     {
         return $this->value;
     }
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return (string) $this->value();
     }
 
+    /**
+     * @param SimpleValueObject $object
+     *
+     * @return bool
+     */
     public function equals(SimpleValueObject $object)
     {
         return $this->value() === $object->value();
     }
 
+    /**
+     * @param mixed $newValue
+     *
+     * @return static
+     */
     protected function mutate($newValue)
     {
         return new static($newValue);

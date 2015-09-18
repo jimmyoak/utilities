@@ -34,7 +34,7 @@ abstract class Enum extends SimpleValueObject
     {
         if (!in_array($type, self::getConstList(), true)) {
             throw new \InvalidArgumentException(
-                sprintf('Provided value for %s is not valid', get_class($this))
+                sprintf('Provided value for %s is not valid: %s', get_class($this), $type)
             );
         }
     }

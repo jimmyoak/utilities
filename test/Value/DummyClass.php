@@ -9,6 +9,7 @@ class DummyClass extends ParentDummyClass
     public $aPublicProperty = 'ANOTHER STRING';
     private $anObject;
     private $anArrayOfObjects;
+    public $aResource;
 
     public function __construct()
     {
@@ -17,6 +18,7 @@ class DummyClass extends ParentDummyClass
             $this->anObject,
             $this->anObject
         ];
+        $this->aResource = tmpfile();
     }
 
     /**

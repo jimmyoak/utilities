@@ -13,21 +13,11 @@ class ObjectUtilsTest extends UtilsBaseTest
     private $expectedParsedXml;
     private $expectedParsedXmlString;
     private $objectToParse;
-    private $objectParsedIntoArray = [
-        'details' => [
-            'media' => [
-                'image' => [
-                    'anImage.png',
-                    'anotherImage.png',
-                ],
-                'video' => 'aVideo.mp4',
-                'audio' => [],
-            ]
-        ]
-    ];
 
     protected function setUp()
     {
+        $this->prepareObjectToParse();
+
         $this->expectedParsedXmlString = '<?xml version="1.0" encoding="UTF-8"?>' .
             '<details>' .
             '<media>' .
@@ -36,9 +26,10 @@ class ObjectUtilsTest extends UtilsBaseTest
             '<video>aVideo.mp4</video>' .
             '<audio/>' .
             '</media>' .
+            '<resource>'.
+            (string) $this->objectToParse->details->resource .
+            '</resource>'.
             '</details>';
-
-        $this->prepareObjectToParse();
 
         $this->expectedParsedXml = simplexml_load_string($this->expectedParsedXmlString);
 
@@ -48,9 +39,23 @@ class ObjectUtilsTest extends UtilsBaseTest
     /** @test */
     public function transformsObjectIntoArray()
     {
+        $expected = [
+            'details' => [
+                'media' => [
+                    'image' => [
+                        'anImage.png',
+                        'anotherImage.png',
+                    ],
+                    'video' => 'aVideo.mp4',
+                    'audio' => [],
+                ],
+                'resource' => (string) $this->objectToParse->details->resource,
+            ],
+        ];
+
         $result = $this->utils->toArray($this->objectToParse);
 
-        $this->assertSame($this->objectParsedIntoArray, $result);
+        $this->assertSame($expected, $result);
     }
 
     /** @test */
@@ -94,6 +99,7 @@ class ObjectUtilsTest extends UtilsBaseTest
                     'oneMoreValue' => 'Oak',
                 ]
             ],
+            'aResource' => (string) $object->aResource,
             'aParentProperty' => 5,
         ];
 
@@ -112,6 +118,7 @@ class ObjectUtilsTest extends UtilsBaseTest
         $media->audio = [];
 
         $details->media = $media;
+        $details->resource = tmpfile();
 
         $this->objectToParse = new \stdClass();
         $this->objectToParse->details = $details;

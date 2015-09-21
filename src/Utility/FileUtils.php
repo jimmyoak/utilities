@@ -60,11 +60,6 @@ class FileUtils extends UtilsBase
         return preg_match('/\.' . $extensionPregQuoted . '$/i', $fileName) > 0;
     }
 
-    /**
-     * @param $path
-     *
-     * @return string
-     */
     private function stripPathLastDirectorySeparator($path)
     {
         $pathLength = strlen($path);

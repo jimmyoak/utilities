@@ -4,13 +4,24 @@ namespace JimmyOak\Utility;
 
 class Utils extends UtilsBase
 {
-    /** @var ArrayUtils */
+    /**
+     * @var ArrayUtils
+     */
     public $array;
-    /** @var FileUtils */
+
+    /**
+     * @var FileUtils
+     */
     public $file;
-    /** @var ObjectUtils */
+
+    /**
+     * @var ObjectUtils
+     */
     public $object;
-    /** @var StringUtils */
+
+    /**
+     * @var StringUtils
+     */
     public $string;
 
     protected function __construct()

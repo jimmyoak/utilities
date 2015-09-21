@@ -8,19 +8,32 @@ use Traversable;
 
 class TypedCollection extends Collection
 {
-    /** @var string */
+    /**
+     * @var string
+     */
     private $objectType;
 
+    /**
+     * @param string $objectType
+     */
     public function __construct($objectType)
     {
-        $this->objectType = $objectType;
+        $this->setObjectType($objectType);
     }
 
+    /**
+     * @return string
+     */
     public function getObjectType()
     {
         return $this->objectType;
     }
 
+    /**
+     * @param string $objectType
+     *
+     * @return $this
+     */
     protected function setObjectType($objectType)
     {
         $this->objectType = $objectType;

@@ -27,9 +27,6 @@ abstract class Enum extends SimpleValueObject
         return $constants[static::class];
     }
 
-    /**
-     * @param $value
-     */
     private function guardAgainstValueNotInValidConstants($value)
     {
         if (!in_array($value, self::getConstList(), true)) {

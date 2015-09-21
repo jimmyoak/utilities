@@ -7,11 +7,6 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate
     /** @var array */
     protected $collection = [];
 
-    /**
-     * @param mixed $offset
-     *
-     * @return bool
-     */
     public function offsetExists($offset)
     {
         return isset($this->collection[$offset]);

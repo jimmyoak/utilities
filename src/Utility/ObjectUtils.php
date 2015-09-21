@@ -87,11 +87,6 @@ class ObjectUtils extends UtilsBase
         return $array;
     }
 
-    /**
-     * @param $object
-     *
-     * @return array
-     */
     private function toShallowArray($object)
     {
         $array = [];

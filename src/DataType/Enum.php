@@ -28,13 +28,13 @@ abstract class Enum extends SimpleValueObject
     }
 
     /**
-     * @param $type
+     * @param $value
      */
-    private function guardAgainstValueNotInValidConstants($type)
+    private function guardAgainstValueNotInValidConstants($value)
     {
-        if (!in_array($type, self::getConstList(), true)) {
+        if (!in_array($value, self::getConstList(), true)) {
             throw new \InvalidArgumentException(
-                sprintf('Provided value for %s is not valid: %s', get_class($this), $type)
+                sprintf('Provided value for %s is not valid: %s', static::class, $value)
             );
         }
     }

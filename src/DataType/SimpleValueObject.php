@@ -42,7 +42,7 @@ abstract class SimpleValueObject
      */
     public function equals(SimpleValueObject $object)
     {
-        return $this->value() === $object->value();
+        return $this->value() === $object->value() && static::class === get_class($object);
     }
 
     /**

@@ -49,6 +49,63 @@ class FileUtils extends UtilsBase
     }
 
     /**
+     * @var string $tokens ...
+     *
+     * @return string
+     */
+    public function makePath()
+    {
+        $tokens = $this->sanitizePathTokens(func_get_args());
+
+        return implode(DIRECTORY_SEPARATOR, $tokens);
+    }
+
+    private function sanitizePathTokens($tokens)
+    {
+        $sanitized = [];
+
+        foreach ($tokens as $token) {
+            if (!in_array($token, ['', DIRECTORY_SEPARATOR], true) && is_string($token)) {
+                $sanitized[] = $this->stripPathLastDirectorySeparator($token);
+            }
+        }
+
+        return $sanitized;
+    }
+
+    /**
+     * @param $fileName
+     *
+     * @return string
+     */
+    public function getExtension($fileName)
+    {
+        $lastDot = strrpos($fileName, '.');
+
+        if (!$lastDot) {
+            return '';
+        }
+
+        return substr($fileName, $lastDot + 1);
+    }
+
+    /**
+     * @param $fileName
+     *
+     * @return string
+     */
+    public function getNameWithoutExtension($fileName)
+    {
+        $lastDot = strrpos($fileName, '.');
+
+        if (!$lastDot) {
+            return $fileName;
+        }
+
+        return substr($fileName, 0, $lastDot);
+    }
+
+    /**
      * @param string $fileName
      * @param string $extension
      *
@@ -57,6 +114,7 @@ class FileUtils extends UtilsBase
     public function extensionIs($fileName, $extension)
     {
         $extensionPregQuoted = preg_quote($extension);
+
         return preg_match('/\.' . $extensionPregQuoted . '$/i', $fileName) > 0;
     }
 

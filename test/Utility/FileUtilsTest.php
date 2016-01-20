@@ -28,6 +28,69 @@ class FileUtilsTest extends UtilsBaseTest
         $this->assertFalse($isNot);
     }
 
+    /**
+     * @test
+     */
+    public function shouldGetFileExtensionFromFilePath()
+    {
+        $fileName = 'file.php';
+        $expected = 'php';
+
+        $extension = $this->utils->getExtension($fileName);
+
+        $this->assertSame($expected, $extension);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldGetEmptyExtensionFromFileWithNoExtension()
+    {
+        $fileName = 'file';
+        $expected = '';
+
+        $extension = $this->utils->getExtension($fileName);
+
+        $this->assertSame($expected, $extension);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldGetFileNameWithoutExtension()
+    {
+        $fileName = 'file.php';
+        $expected = 'file';
+
+        $fileNameWithNoExtension = $this->utils->getNameWithoutExtension($fileName);
+
+        $this->assertSame($expected, $fileNameWithNoExtension);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldGetFullNameWhenFileHasNoExtension()
+    {
+        $fileName = 'file.php';
+        $expected = 'file';
+
+        $fileNameWithNoExtension = $this->utils->getNameWithoutExtension($fileName);
+
+        $this->assertSame($expected, $fileNameWithNoExtension);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldMakeFilePathFromTokens()
+    {
+        $expected = '/some/awesome/and/incredible/nice.file';
+        $filePath = $this->utils->makePath('/some', 'awesome/', 'and/incredible', 'nice.file');
+
+        $this->assertSame($expected, $filePath);
+    }
+
     /** @test */
     public function shouldScanAllFilesAndDirsFromADir()
     {
@@ -73,9 +136,9 @@ class FileUtilsTest extends UtilsBaseTest
     {
         $expected = [
             'AFile.txt',
-            'AnotherDir'.DIRECTORY_SEPARATOR.'AnotherDirIntoDir'.DIRECTORY_SEPARATOR.'AFarAwayFile.txt',
-            'AnotherDir'.DIRECTORY_SEPARATOR.'AnotherDirIntoDir',
-            'AnotherDir'.DIRECTORY_SEPARATOR.'AnotherFileIntoDir.txt',
+            'AnotherDir' . DIRECTORY_SEPARATOR . 'AnotherDirIntoDir' . DIRECTORY_SEPARATOR . 'AFarAwayFile.txt',
+            'AnotherDir' . DIRECTORY_SEPARATOR . 'AnotherDirIntoDir',
+            'AnotherDir' . DIRECTORY_SEPARATOR . 'AnotherFileIntoDir.txt',
             'AnotherDir',
             'AnotherFile.txt',
         ];
@@ -90,8 +153,8 @@ class FileUtilsTest extends UtilsBaseTest
     {
         $expected = [
             'AFile.txt',
-            'AnotherDir'.DIRECTORY_SEPARATOR.'AnotherDirIntoDir'.DIRECTORY_SEPARATOR.'AFarAwayFile.txt',
-            'AnotherDir'.DIRECTORY_SEPARATOR.'AnotherFileIntoDir.txt',
+            'AnotherDir' . DIRECTORY_SEPARATOR . 'AnotherDirIntoDir' . DIRECTORY_SEPARATOR . 'AFarAwayFile.txt',
+            'AnotherDir' . DIRECTORY_SEPARATOR . 'AnotherFileIntoDir.txt',
             'AnotherFile.txt',
         ];
 
@@ -104,7 +167,7 @@ class FileUtilsTest extends UtilsBaseTest
     public function shouldScanOnlyDirsFromADirRecursively()
     {
         $expected = [
-            'AnotherDir'.DIRECTORY_SEPARATOR.'AnotherDirIntoDir',
+            'AnotherDir' . DIRECTORY_SEPARATOR . 'AnotherDirIntoDir',
             'AnotherDir',
         ];
 

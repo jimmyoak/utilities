@@ -471,21 +471,21 @@ echo (\JimmyOak\Utility\FileUtils::instance()->extensionIs('foo.php', 'bar') ? '
 #### MakePath
  
 ```php
-echo $this->utils->makePath('/some', 'awesome/', 'and/incredible', 'nice.file');
+echo \JimmyOak\Utility\FileUtils::instance()->makePath('/some', 'awesome/', 'and/incredible', 'nice.file');
 // prints: /some/awesome/and/incredible/nice.file
 ```
 
 #### GetExtension
 
 ```php
-echo $this->utils->getExtension('file.php');
+echo \JimmyOak\Utility\FileUtils::instance()->getExtension('file.php');
 // prints: php
 ```
 
 #### GetNameWithoutExtension
 
 ```php
-echo $this->utils->getExtension('file.php');
+echo \JimmyOak\Utility\FileUtils::instance()->getExtension('file.php');
 // prints: file
 ```
 

@@ -18,20 +18,21 @@ abstract class Enum extends SimpleValueObject
      */
     public static function getConstList()
     {
-        static $constants = [];
+        static $constants = array();
 
-        if (!isset($constants[static::class])) {
-            $constants[static::class] = (new \ReflectionClass(static::class))->getConstants();
+        if (!isset($constants[get_called_class()])) {
+            $reflectionClass = new \ReflectionClass(get_called_class());
+            $constants[get_called_class()] = $reflectionClass->getConstants();
         }
 
-        return $constants[static::class];
+        return $constants[get_called_class()];
     }
 
     private function guardAgainstValueNotInValidConstants($value)
     {
         if (!in_array($value, self::getConstList(), true)) {
             throw new \InvalidArgumentException(
-                sprintf('Provided value for %s is not valid: %s', static::class, $value)
+                sprintf('Provided value for %s is not valid: %s', get_called_class(), $value)
             );
         }
     }

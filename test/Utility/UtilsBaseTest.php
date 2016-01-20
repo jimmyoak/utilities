@@ -21,7 +21,7 @@ abstract class UtilsBaseTest extends \PHPUnit_Framework_TestCase
 
         $this->assertFalse($constructor->isPublic());
         $this->assertSame($anInstantiation, $anotherInstantiation);
-        $this->setExpectedException(\Exception::class);
+        $this->setExpectedException('\Exception');
 
         clone $this->utils;
     }

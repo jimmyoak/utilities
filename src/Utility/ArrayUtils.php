@@ -53,7 +53,7 @@ class ArrayUtils extends UtilsBase
 
     private function flattenPreservingKeys(array $toFlat)
     {
-        $flatten = [];
+        $flatten = array();
 
         foreach ($toFlat as $key => $value) {
             if (is_array($value)) {
@@ -68,7 +68,7 @@ class ArrayUtils extends UtilsBase
 
     private function flattenNotPreservingKeys(array $toFlat)
     {
-        $flatten = [];
+        $flatten = array();
 
         foreach ($toFlat as $value) {
             if (is_array($value)) {
@@ -83,7 +83,7 @@ class ArrayUtils extends UtilsBase
 
     private function flattenPreservingAssociativeKeys(array $toFlat)
     {
-        $flatten = [];
+        $flatten = array();
 
         foreach ($toFlat as $key => $value) {
             if (is_array($value)) {

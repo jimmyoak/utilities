@@ -3,12 +3,11 @@
 namespace JimmyOak\Test\Collection;
 
 use JimmyOak\Collection\TypedCollection;
-use JimmyOak\Exception\Collection\NotValidObjectTypeException;
-use JimmyOak\Exception\Collection\UndefinedOffsetException;
+use JimmyOak\Test\Value\DateTimeChild;
 
 class TypedCollectionTest extends CollectionTest
 {
-    protected $collectionObjectType = \DateTimeInterface::class;
+    protected $collectionObjectType = '\DateTime';
     /** @var TypedCollection */
     protected $collection;
 
@@ -20,7 +19,7 @@ class TypedCollectionTest extends CollectionTest
     /** @test */
     public function shouldThrowExceptionOnNonExistentOffset()
     {
-        $this->setExpectedException(UndefinedOffsetException::class);
+        $this->setExpectedException('\JimmyOak\Exception\Collection\UndefinedOffsetException');
         $value = $this->collection[0];
         $this->assertNull($value);
     }
@@ -28,14 +27,14 @@ class TypedCollectionTest extends CollectionTest
     /** @test */
     public function shouldThrowExceptionOnAddingAnotherTypeThanExpected()
     {
-        $this->setExpectedException(NotValidObjectTypeException::class);
+        $this->setExpectedException('\JimmyOak\Exception\Collection\NotValidObjectTypeException');
         $this->collection[] = new \stdClass();
     }
 
     /** @test */
     public function shouldNotThrowExceptionOnAddingSubClassOfExpectedType()
     {
-        $nowDateTime = new \DateTimeImmutable();
+        $nowDateTime = new DateTimeChild();
         $this->collection[] = $nowDateTime;
         $this->assertSame($nowDateTime, $this->collection[0]);
     }

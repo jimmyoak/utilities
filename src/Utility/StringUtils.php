@@ -4,7 +4,7 @@ namespace JimmyOak\Utility;
 
 class StringUtils extends UtilsBase
 {
-    const CASE_INSENSITIVE   = 1;
+    const CASE_INSENSITIVE = 1;
     const ACCENT_INSENSITIVE = 2;
 
     private $accentsMap = array(
@@ -181,7 +181,7 @@ class StringUtils extends UtilsBase
     {
         if ($this->isAccentInsensitiveModifier($modifiers)) {
             $haystack = $this->removeAccents($haystack);
-            $needle   = $this->removeAccents($needle);
+            $needle = $this->removeAccents($needle);
         }
     }
 }

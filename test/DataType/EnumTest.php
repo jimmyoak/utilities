@@ -29,10 +29,10 @@ class EnumTest extends \PHPUnit_Framework_TestCase
     {
         $constants = TestableEnum::getConstList();
 
-        $expected = [
+        $expected = array(
             'TESTABLE_VALUE1' => 0,
             'TESTABLE_VALUE2' => 1,
-        ];
+        );
         $this->assertSame($expected, $constants);
     }
 
@@ -42,20 +42,23 @@ class EnumTest extends \PHPUnit_Framework_TestCase
         $constants = TestableEnum::getConstList();
         $anotherConstants = AnotherTestableEnum::getConstList();
 
-        $this->assertSame([
+        $this->assertSame(array(
                 'TESTABLE_VALUE1' => 0,
                 'TESTABLE_VALUE2' => 1,
-            ], $constants);
-        $this->assertSame([
+            ), $constants);
+        $this->assertSame(array(
                 'TESTABLE_VALUE3' => 0,
                 'TESTABLE_VALUE4' => 1,
-            ], $anotherConstants);
+            ), $anotherConstants);
     }
 
     /** @test */
     public function shouldThrowExceptionOnNotAValidEnumValue()
     {
-        $this->setExpectedException(\InvalidArgumentException::class);
+        $this->setExpectedException(
+            '\InvalidArgumentException',
+            'Provided value for JimmyOak\Test\DataType\TestableEnum is not valid: ' . self::A_NOT_VALID_VALUE
+        );
         new TestableEnum(self::A_NOT_VALID_VALUE);
     }
 }

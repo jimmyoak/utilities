@@ -10,11 +10,11 @@
     "license": "MIT",
     "keywords": ["utilities", "collection", "jimmy", "jimmyoak"],
     "require": {
-        "php": ">=5.5.0"
+        "php": ">=5.3.3"
     },
     "require-dev": {
-        "phpunit/phpunit": ">=3.7.0",
-        "satooshi/php-coveralls": "dev-master"
+        "phpunit/phpunit": "^4.8",
+        "satooshi/php-coveralls": "^1.0"
     },
     "autoload": {
         "psr-4": {
@@ -33,6 +33,9 @@
         }
     },
     "config": {
-        "bin-dir": "bin/"
+        "bin-dir": "bin/",
+        "platform": {
+            "php": "5.3.3"
+        }
     }
 }

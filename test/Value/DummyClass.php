@@ -14,10 +14,10 @@ class DummyClass extends ParentDummyClass
     public function __construct()
     {
         $this->anObject = new AnotherDummyClass();
-        $this->anArrayOfObjects = [
+        $this->anArrayOfObjects = array(
             $this->anObject,
             $this->anObject
-        ];
+        );
         $this->aResource = tmpfile();
     }
 
@@ -37,6 +37,7 @@ class DummyClass extends ParentDummyClass
     public function setAPrivateProperty($aPrivateProperty)
     {
         $this->aPrivateProperty = $aPrivateProperty;
+
         return $this;
     }
 
@@ -56,6 +57,7 @@ class DummyClass extends ParentDummyClass
     public function setAProtectedProperty($aProtectedProperty)
     {
         $this->aProtectedProperty = $aProtectedProperty;
+
         return $this;
     }
 
@@ -75,6 +77,7 @@ class DummyClass extends ParentDummyClass
     public function setAPublicProperty($aPublicProperty)
     {
         $this->aPublicProperty = $aPublicProperty;
+
         return $this;
     }
 
@@ -94,6 +97,7 @@ class DummyClass extends ParentDummyClass
     public function setAnObject($anObject)
     {
         $this->anObject = $anObject;
+
         return $this;
     }
 
@@ -113,6 +117,7 @@ class DummyClass extends ParentDummyClass
     public function setAnArrayOfObjects($anArrayOfObjects)
     {
         $this->anArrayOfObjects = $anArrayOfObjects;
+
         return $this;
     }
 }

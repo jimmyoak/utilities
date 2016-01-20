@@ -5,7 +5,7 @@ namespace JimmyOak\Collection;
 class Collection implements \ArrayAccess, \Countable, \IteratorAggregate
 {
     /** @var array */
-    protected $collection = [];
+    protected $collection = array();
 
     public function offsetExists($offset)
     {

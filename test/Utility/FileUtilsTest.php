@@ -94,11 +94,11 @@ class FileUtilsTest extends UtilsBaseTest
     /** @test */
     public function shouldScanAllFilesAndDirsFromADir()
     {
-        $expected = [
+        $expected = array(
             'AFile.txt',
             'AnotherDir',
             'AnotherFile.txt',
-        ];
+        );
 
         $scanned = $this->utils->scanDir($this->testableDir, FileUtils::ALL, false);
 
@@ -108,10 +108,10 @@ class FileUtilsTest extends UtilsBaseTest
     /** @test */
     public function shouldScanOnlyFilesFromADir()
     {
-        $expected = [
+        $expected = array(
             'AFile.txt',
             'AnotherFile.txt',
-        ];
+        );
 
         $scanned = $this->utils->scanDir($this->testableDir, FileUtils::FILES, false);
 
@@ -121,9 +121,9 @@ class FileUtilsTest extends UtilsBaseTest
     /** @test */
     public function shouldScanOnlyDirsFromADir()
     {
-        $expected = [
+        $expected = array(
             'AnotherDir',
-        ];
+        );
 
         $scanned = $this->utils->scanDir($this->testableDir, FileUtils::DIRS, false);
 
@@ -134,14 +134,14 @@ class FileUtilsTest extends UtilsBaseTest
     /** @test */
     public function shouldScanAllFilesAndDirsFromADirRecursively()
     {
-        $expected = [
+        $expected = array(
             'AFile.txt',
             'AnotherDir' . DIRECTORY_SEPARATOR . 'AnotherDirIntoDir' . DIRECTORY_SEPARATOR . 'AFarAwayFile.txt',
             'AnotherDir' . DIRECTORY_SEPARATOR . 'AnotherDirIntoDir',
             'AnotherDir' . DIRECTORY_SEPARATOR . 'AnotherFileIntoDir.txt',
             'AnotherDir',
             'AnotherFile.txt',
-        ];
+        );
 
         $scanned = $this->utils->scanDir($this->testableDir, FileUtils::ALL, true);
 
@@ -151,12 +151,12 @@ class FileUtilsTest extends UtilsBaseTest
     /** @test */
     public function shouldScanOnlyFilesFromADirRecursively()
     {
-        $expected = [
+        $expected = array(
             'AFile.txt',
             'AnotherDir' . DIRECTORY_SEPARATOR . 'AnotherDirIntoDir' . DIRECTORY_SEPARATOR . 'AFarAwayFile.txt',
             'AnotherDir' . DIRECTORY_SEPARATOR . 'AnotherFileIntoDir.txt',
             'AnotherFile.txt',
-        ];
+        );
 
         $scanned = $this->utils->scanDir($this->testableDir, FileUtils::FILES, true);
 
@@ -166,10 +166,10 @@ class FileUtilsTest extends UtilsBaseTest
     /** @test */
     public function shouldScanOnlyDirsFromADirRecursively()
     {
-        $expected = [
+        $expected = array(
             'AnotherDir' . DIRECTORY_SEPARATOR . 'AnotherDirIntoDir',
             'AnotherDir',
-        ];
+        );
 
         $scanned = $this->utils->scanDir($this->testableDir, FileUtils::DIRS, true);
 

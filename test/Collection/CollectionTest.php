@@ -55,11 +55,11 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
     /** @test */
     public function shouldBeIterable()
     {
-        $values = [
+        $values = array(
             new \DateTime('-1 day'),
             new \DateTime(),
             new \DateTime('+1 day')
-        ];
+        );
 
         $this->collection[] = $values[0];
         $this->collection[] = $values[1];
@@ -73,10 +73,10 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
     /** @test */
     public function shouldBeIterableDespiteAKeyGap()
     {
-        $values = [
+        $values = array(
             0 => new \DateTime('-1 day'),
             2 => new \DateTime('+1 day')
-        ];
+        );
 
         $this->collection[0] = $values[0];
         $this->collection[2] = $values[2];

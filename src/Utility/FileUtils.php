@@ -21,7 +21,7 @@ class FileUtils extends UtilsBase
 
         $path = $this->stripPathLastDirectorySeparator($path);
 
-        $allFiles = [];
+        $allFiles = array();
         foreach ($files as $file) {
             if ($file !== '.' && $file !== '..') {
                 $pathToScan = $path . DIRECTORY_SEPARATOR . $file;
@@ -62,10 +62,10 @@ class FileUtils extends UtilsBase
 
     private function sanitizePathTokens($tokens)
     {
-        $sanitized = [];
+        $sanitized = array();
 
         foreach ($tokens as $token) {
-            if (!in_array($token, ['', DIRECTORY_SEPARATOR], true) && is_string($token)) {
+            if (!in_array($token, array('', DIRECTORY_SEPARATOR), true) && is_string($token)) {
                 $sanitized[] = $this->stripPathLastDirectorySeparator($token);
             }
         }

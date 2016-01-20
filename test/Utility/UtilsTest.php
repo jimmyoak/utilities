@@ -2,10 +2,6 @@
 
 namespace JimmyOak\Test\Utility;
 
-use JimmyOak\Utility\ArrayUtils;
-use JimmyOak\Utility\FileUtils;
-use JimmyOak\Utility\ObjectUtils;
-use JimmyOak\Utility\StringUtils;
 use JimmyOak\Utility\Utils;
 
 class UtilsTest extends UtilsBaseTest
@@ -21,9 +17,9 @@ class UtilsTest extends UtilsBaseTest
     /** @test */
     public function containerHasInstancesOfUtils()
     {
-        $this->assertInstanceOf(ArrayUtils::class, $this->utils->array);
-        $this->assertInstanceOf(FileUtils::class, $this->utils->file);
-        $this->assertInstanceOf(ObjectUtils::class, $this->utils->object);
-        $this->assertInstanceOf(StringUtils::class, $this->utils->string);
+        $this->assertInstanceOf('\JimmyOak\Utility\ArrayUtils', $this->utils->array);
+        $this->assertInstanceOf('\JimmyOak\Utility\FileUtils', $this->utils->file);
+        $this->assertInstanceOf('\JimmyOak\Utility\ObjectUtils', $this->utils->object);
+        $this->assertInstanceOf('\JimmyOak\Utility\StringUtils', $this->utils->string);
     }
 }

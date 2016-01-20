@@ -50,23 +50,22 @@ class ObjectUtils extends UtilsBase
 
     private function getAllObjectVars($object)
     {
-        $getObjectVarsClosure = function () {
-            return get_object_vars($this);
-        };
-
-        $vars = [];
-        $class = get_class($object);
+        $vars = array();
+        $reflectionClass = new \ReflectionClass($object);
         do {
-            $bindedGetObjectVarsClosure = \Closure::bind($getObjectVarsClosure, $object, $class);
-            $vars = array_merge($vars, $bindedGetObjectVarsClosure());
-        } while ($class = get_parent_class($class));
+            $reflectionProperties = $reflectionClass->getProperties();
+            foreach ($reflectionProperties as $reflectionProperty) {
+                $reflectionProperty->setAccessible(true);
+                $vars[$reflectionProperty->getName()] = $reflectionProperty->getValue($object);
+            }
+        } while ($reflectionClass = $reflectionClass->getParentClass());
 
         return $vars;
     }
 
     private function toDeepArray($object)
     {
-        $array = [];
+        $array = array();
 
         if (is_object($object)) {
             $vars = $this->getAllObjectVars($object);
@@ -78,7 +77,7 @@ class ObjectUtils extends UtilsBase
             if (is_object($value) || is_array($value)) {
                 $array[$property] = $this->toDeepArray($value);
             } elseif (is_resource($value)) {
-                $array[$property] = (string) $value;
+                $array[$property] = (string)$value;
             } else {
                 $array[$property] = $value;
             }
@@ -89,7 +88,7 @@ class ObjectUtils extends UtilsBase
 
     private function toShallowArray($object)
     {
-        $array = [];
+        $array = array();
 
         foreach ($object as $property => $value) {
             if (is_object($value) || is_array($value)) {

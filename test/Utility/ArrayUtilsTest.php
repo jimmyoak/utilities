@@ -10,18 +10,18 @@ class ArrayUtilsTest extends UtilsBaseTest
     protected $utils;
 
     private $expectedParsedXmlString;
-    private $arrayToParseAsXml = [
-        'details' => [
-            'media' => [
-                'image' => [
+    private $arrayToParseAsXml = array(
+        'details' => array(
+            'media' => array(
+                'image' => array(
                     'anImage.png',
                     'anotherImage.png',
-                ],
+                ),
                 'video' => 'aVideo.mp4',
-                'audio' => [],
-            ]
-        ]
-    ];
+                'audio' => array(),
+            )
+        )
+    );
     private $expectedParsedXml;
 
     protected function setUp()
@@ -44,8 +44,8 @@ class ArrayUtilsTest extends UtilsBaseTest
     /** @test */
     public function arrayFlattenMakesArrayUnidimensional()
     {
-        $expected = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-        $toFlat = [1, 2, 3, [4, 5, 6, [7, 8, 9]]];
+        $expected = array(1, 2, 3, 4, 5, 6, 7, 8, 9);
+        $toFlat = array(1, 2, 3, array(4, 5, 6, array(7, 8, 9)));
 
         $result = $this->utils->flatten($toFlat);
 
@@ -55,8 +55,8 @@ class ArrayUtilsTest extends UtilsBaseTest
     /** @test */
     public function arrayFlattenMakesArrayUnidimensionalPreservingKeys()
     {
-        $expected = [3, 'a' => 1, 'b' => 2, 'c' => 3];
-        $toFlat = [1, 'a' => 1, 'b' => 1, 'c' => 1, [2, 'b' => 2, 'c' => 2, [3, 'c' => 3]]];
+        $expected = array(3, 'a' => 1, 'b' => 2, 'c' => 3);
+        $toFlat = array(1, 'a' => 1, 'b' => 1, 'c' => 1, array(2, 'b' => 2, 'c' => 2, array(3, 'c' => 3)));
 
         $result = $this->utils->flatten($toFlat, ArrayUtils::PRESERVE_KEYS);
 
@@ -66,8 +66,8 @@ class ArrayUtilsTest extends UtilsBaseTest
     /** @test */
     public function arrayFlattenMakesArrayUnidimensionalPreserveingAssociativeKeys()
     {
-        $expected = [1, 'a' => 1, 'b' => 2, 'c' => 3, 2, 3];
-        $toFlat = [1, 'a' => 1, 'b' => 1, 'c' => 1, [2, 'b' => 2, 'c' => 2, [3, 'c' => 3]]];
+        $expected = array(1, 'a' => 1, 'b' => 2, 'c' => 3, 2, 3);
+        $toFlat = array(1, 'a' => 1, 'b' => 1, 'c' => 1, array(2, 'b' => 2, 'c' => 2, array(3, 'c' => 3)));
 
         $result = $this->utils->flatten($toFlat, ArrayUtils::PRESERVE_ASSOCIATIVE_KEYS);
 

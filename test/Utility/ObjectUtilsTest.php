@@ -39,19 +39,19 @@ class ObjectUtilsTest extends UtilsBaseTest
     /** @test */
     public function transformsObjectIntoArray()
     {
-        $expected = [
-            'details' => [
-                'media' => [
-                    'image' => [
+        $expected = array(
+            'details' => array(
+                'media' => array(
+                    'image' => array(
                         'anImage.png',
                         'anotherImage.png',
-                    ],
+                    ),
                     'video' => 'aVideo.mp4',
-                    'audio' => [],
-                ],
+                    'audio' => array(),
+                ),
                 'resource' => (string) $this->objectToParse->details->resource,
-            ],
-        ];
+            ),
+        );
 
         $result = $this->utils->toArray($this->objectToParse);
 
@@ -78,30 +78,30 @@ class ObjectUtilsTest extends UtilsBaseTest
     public function transformsObjectToArrayDeeply()
     {
         $object = new DummyClass();
-        $expected = [
+        $expected = array(
             'aPrivateProperty' => 'A STRING',
             'aProtectedProperty' => 1234,
             'aPublicProperty' => 'ANOTHER STRING',
-            'anObject' => [
+            'anObject' => array(
                 'aValue' => 'Jimmy',
                 'anotherValue' => 'Kane',
                 'oneMoreValue' => 'Oak',
-            ],
-            'anArrayOfObjects' => [
-                [
+            ),
+            'anArrayOfObjects' => array(
+                array(
                     'aValue' => 'Jimmy',
                     'anotherValue' => 'Kane',
                     'oneMoreValue' => 'Oak',
-                ],
-                [
+                ),
+                array(
                     'aValue' => 'Jimmy',
                     'anotherValue' => 'Kane',
                     'oneMoreValue' => 'Oak',
-                ]
-            ],
+                )
+            ),
             'aResource' => (string) $object->aResource,
             'aParentProperty' => 5,
-        ];
+        );
 
         $objectAsArray = $this->utils->toArray($object, true);
 
@@ -113,9 +113,9 @@ class ObjectUtilsTest extends UtilsBaseTest
         $details = new \stdClass();
 
         $media = new \stdClass();
-        $media->image = ['anImage.png', 'anotherImage.png'];
+        $media->image = array('anImage.png', 'anotherImage.png');
         $media->video = 'aVideo.mp4';
-        $media->audio = [];
+        $media->audio = array();
 
         $details->media = $media;
         $details->resource = tmpfile();

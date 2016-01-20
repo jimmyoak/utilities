@@ -29,6 +29,9 @@
         - [IsUrl and IsEmail](#isurl-and-isemail)
     - [FileUtils](#fileutils)
         - [ExtensionIs](#extensionis)
+        - [MakePath](#makepath)
+        - [GetExtension](#getextension)
+        - [GetNameWithoutExtension](#getnamewithoutextension)
         - [ScanDir](#scandir)
 - [Quality](#quality)
 - [Contribute](#contribute)
@@ -463,6 +466,27 @@ echo (\JimmyOak\Utility\FileUtils::instance()->extensionIs('foo.php', 'php') ? '
 
 echo (\JimmyOak\Utility\FileUtils::instance()->extensionIs('foo.php', 'bar') ? 'true' : 'false') . PHP_EOL;
 // prints: false
+```
+
+#### MakePath
+ 
+```php
+echo \JimmyOak\Utility\FileUtils::instance()->makePath('/some', 'awesome/', 'and/incredible', 'nice.file');
+// prints: /some/awesome/and/incredible/nice.file
+```
+
+#### GetExtension
+
+```php
+echo \JimmyOak\Utility\FileUtils::instance()->getExtension('file.php');
+// prints: php
+```
+
+#### GetNameWithoutExtension
+
+```php
+echo \JimmyOak\Utility\FileUtils::instance()->getExtension('file.php');
+// prints: file
 ```
 
 #### ScanDir

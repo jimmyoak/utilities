@@ -47,6 +47,12 @@ Use [Composer](https://getcomposer.org) to install the package:
 $ composer require jimmyoak/utilities
 ```
 
+For PHP 5.3 compatibility use \*.\*.\*b versions (yep, I marked them as beta versions):
+
+```bash
+$ composer require jimmyoak/utilities:2.5.1b
+```
+
 ## Features
 
 - Collection utilities (Unique and/or Typed Collections) 

@@ -8,7 +8,7 @@ class SingleDomainEventPublisherTest extends DomainEventPublisherTest
 {
     protected function createDomainEventPublisher()
     {
-        return SingleDomainEventPublisher::create();
+        return SingleDomainEventPublisher::instance();
     }
 
     /**
@@ -16,8 +16,8 @@ class SingleDomainEventPublisherTest extends DomainEventPublisherTest
      */
     public function shouldBeSingleton()
     {
-        $publisher = SingleDomainEventPublisher::create();
-        $samePublisher = SingleDomainEventPublisher::create();
+        $publisher = SingleDomainEventPublisher::instance();
+        $samePublisher = SingleDomainEventPublisher::instance();
 
         $this->assertSame($publisher, $samePublisher);
     }

@@ -4,7 +4,7 @@ namespace JimmyOak\Event;
 
 class SingleDomainEventPublisher extends DomainEventPublisher
 {
-    public static function create()
+    public static function instance()
     {
         static $instance = null;
         if (null === $instance) {

@@ -10,8 +10,8 @@
     - [Collections](#collections)
         - [Collection](#collection)
         - [TypedCollection](#typedcollection)
-        - [UniquedCollection](#uniquedcollection)
-        - [UniquedTypedCollection](#uniquedtypedcollection)
+        - [Set](#set)
+        - [TypedSet](#typedset)
     - [DataType](#datatype)
         - [Enum](#enum)
         - [SimpleValueObject](#simplevalueobject)
@@ -55,7 +55,7 @@ $ composer require jimmyoak/utilities:2.5.1b
 
 ## Features
 
-- Collection utilities (Unique and/or Typed Collections) 
+- Collection and Set utilities (Typed/Untyped collections and sets) 
 - Enum base class
 - SimpleValueObject base class
 - Array utilities
@@ -88,11 +88,11 @@ $collection[] = new \DateTime();
 $collection[] = new \DateInterval('P1D'); //Throws \JimmyOak\Exception\Collection\NotValidObjectTypeException
 ```
 
-#### UniquedCollection
+#### Set
 
 You can fill the collection with object, scalars...
 ```php
-$collection = new \JimmyOak\Collection\UniquedCollection();
+$collection = new \JimmyOak\Collection\Set();
 $collection[] = 'Foo';
 $collection[] = 'Foo';
 $collection[] = 'Bar';
@@ -104,11 +104,11 @@ foreach ($collection as $value) {
 //prints: Foo Bar
 ```
 
-#### UniquedTypedCollection
+#### TypedSet
 
 You can fill the collection with object, scalars...
 ```php
-$collection = new \JimmyOak\Collection\UniquedTypedCollection(\DateTime::class);
+$collection = new \JimmyOak\Collection\TypedSet(\DateTime::class);
 $aDateTime = new \DateTime('1992-10-07');
 $collection[] = $aDateTime;
 $collection[] = $aDateTime;
@@ -128,7 +128,7 @@ foreach ($collection as $value) {
 Of course you can hipervitaminate these classes:
 
 ```php
-class DateTimeCollection extends \JimmyOak\Collection\UniquedTypedCollection
+class DateTimeCollection extends \JimmyOak\Collection\TypedSet
 {
     public function __construct() {
         $this->setObjectType(\DateTime::class);

@@ -2,7 +2,7 @@
 
 namespace JimmyOak\Collection;
 
-trait CollectionUniquer
+trait SetTrait
 {
     public function offsetSet($offset, $value)
     {

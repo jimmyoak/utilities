@@ -2,13 +2,13 @@
 
 namespace JimmyOak\Test\Collection;
 
-use JimmyOak\Collection\UniquedCollection;
+use JimmyOak\Collection\Set;
 
-class UniquedCollectionTest extends CollectionTest
+class SetTest extends CollectionTest
 {
     protected function setUp()
     {
-        $this->collection = new UniquedCollection();
+        $this->collection = new Set();
     }
 
     /** @test */

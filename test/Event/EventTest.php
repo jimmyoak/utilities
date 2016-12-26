@@ -2,16 +2,16 @@
 
 namespace JimmyOak\Test\Event;
 
-class DomainEventTest extends \PHPUnit_Framework_TestCase
+class EventTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @test
      */
     public function shouldReturnOccurredOnDateTime()
     {
-        $domainEvent = new TestableDomainEvent();
+        $event = new TestableEvent();
 
-        $this->assertEquals($this->now(), $domainEvent->getOccurredOn(), 'OccurredOn DateTime is now', 1);
+        $this->assertEquals($this->now(), $event->getOccurredOn(), 'OccurredOn DateTime is now', 1);
     }
 
     /**

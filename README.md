@@ -163,7 +163,7 @@ foreach ($dateTimeCollection->asStrings() as $dateTimeString) {
 ### EventPublisher
 
 ```php
-class MessageEvent extends DomainEvent
+class MessageEvent extends Event
 {
     private $message;
 
@@ -179,25 +179,25 @@ class MessageEvent extends DomainEvent
     }
 }
 
-class MessageSubscriber extends DomainEventSubscriber
+class MessageSubscriber extends EventSubscriber
 {
-    public function isSubscribedTo(DomainEvent $domainEvent)
+    public function isSubscribedTo(Event $event)
     {
-        return $domainEvent instanceof MessageEvent;
+        return $event instanceof MessageEvent;
     }
 
-    public function handle(DomainEvent $domainEvent)
+    public function handle(Event $event)
     {
         printf(
             '[%s]: %s %s',
-            $domainEvent->getOccurredOn()->format('Y-m-d H:i:s'),
-            $domainEvent->getMessage(),
+            $event->getOccurredOn()->format('Y-m-d H:i:s'),
+            $event->getMessage(),
             PHP_EOL
         );
     }
 }
 
-SingleDomainEventPublisher::instance()
+SingleEventPublisher::instance()
     ->subscribe(new MessageSubscriber())
     ->publish(new MessageEvent('Hi!'))
     ->publish(new MessageEvent('Bye!'));

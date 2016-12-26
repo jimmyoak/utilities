@@ -5,7 +5,7 @@ namespace JimmyOak\Event;
 use JimmyOak\DataType\SimpleValueObject;
 use Ramsey\Uuid\Uuid;
 
-class DomainEventSubscriberId extends SimpleValueObject
+class EventSubscriberId extends SimpleValueObject
 {
     public function __construct($value = null)
     {

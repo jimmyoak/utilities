@@ -2,7 +2,7 @@
 
 namespace JimmyOak\Event;
 
-abstract class DomainEvent
+abstract class Event
 {
     /**
      * @var \DateTime

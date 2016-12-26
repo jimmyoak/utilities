@@ -2,7 +2,7 @@
 
 namespace JimmyOak\Event;
 
-class SingleDomainEventPublisher extends DomainEventPublisher
+class SingleEventPublisher extends EventPublisher
 {
     public static function instance()
     {

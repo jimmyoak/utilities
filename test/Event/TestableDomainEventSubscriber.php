@@ -2,27 +2,27 @@
 
 namespace JimmyOak\Test\Event;
 
-use JimmyOak\Event\DomainEvent;
-use JimmyOak\Event\DomainEventSubscriber;
+use JimmyOak\Event\Event;
+use JimmyOak\Event\EventSubscriber;
 
-class TestableDomainEventSubscriber extends DomainEventSubscriber
+class TestableEventSubscriber extends EventSubscriber
 {
     /**
-     * @param DomainEvent $domainEvent
+     * @param Event $event
      *
      * @return bool
      */
-    public function isSubscribedTo(DomainEvent $domainEvent)
+    public function isSubscribedTo(Event $event)
     {
         return true;
     }
 
     /**
-     * @param DomainEvent $domainEvent
+     * @param Event $event
      *
      * @return void
      */
-    public function handle(DomainEvent $domainEvent)
+    public function handle(Event $event)
     {
         // do nothing
     }

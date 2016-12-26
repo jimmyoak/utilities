@@ -7,17 +7,8 @@ php:
   - 5.5
   - 7.0
   - 7.1
-
-matrix:
-  fast_finish: true
-    
-before_install:
-  - /home/travis/.phpenv/versions/$(phpenv version-name)/bin/composer self-update
-  - sh -c "sudo mkdir vendor"
-  - sh -c "sudo mount -t tmpfs -o size=512M tmpfs vendor"
     
 before_script:
-  - alias composer="php -d zend.enable_gc=0 /usr/bin/composer"
   - composer install
   
 script:

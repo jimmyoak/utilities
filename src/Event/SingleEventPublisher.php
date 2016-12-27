@@ -4,13 +4,18 @@ namespace JimmyOak\Event;
 
 class SingleEventPublisher extends EventPublisher
 {
+    private static $instances = [];
+
+    private function __construct()
+    {
+    }
+
     public static function instance()
     {
-        static $instance = null;
-        if (null === $instance) {
-            $instance = new self();
+        if (!isset(self::$instances[static::class])) {
+            self::$instances[static::class] = new static();
         }
 
-        return $instance;
+        return self::$instances[static::class];
     }
 }

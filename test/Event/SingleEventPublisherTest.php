@@ -21,4 +21,17 @@ class SingleEventPublisherTest extends EventPublisherTest
 
         $this->assertSame($publisher, $samePublisher);
     }
+
+    /**
+     * @test
+     */
+    public function shouldNotShareParentInstanceOnExtensionButShareInheritedInstance()
+    {
+        $aSingleEventPublisher = ASingleEventPublisher::instance();
+        $anotherSingleEventPublisher = AnotherSingleEventPublisher::instance();
+
+        $this->assertNotSame($aSingleEventPublisher, $anotherSingleEventPublisher);
+        $this->assertSame(ASingleEventPublisher::instance(), $aSingleEventPublisher);
+        $this->assertSame(AnotherSingleEventPublisher::instance(), $anotherSingleEventPublisher);
+    }
 }

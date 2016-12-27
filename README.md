@@ -12,6 +12,7 @@
         - [TypedCollection](#typedcollection)
         - [Set](#set)
         - [TypedSet](#typedset)
+    - [Event Publisher](#eventpublisher)
     - [DataType](#datatype)
         - [Enum](#enum)
         - [SimpleValueObject](#simplevalueobject)
@@ -58,6 +59,7 @@ $ composer require jimmyoak/utilities:2.5.1b
 - Collection and Set utilities (Typed/Untyped collections and sets) 
 - Enum base class
 - SimpleValueObject base class
+- Event publisher
 - Array utilities
 - File utilities
 - String utilities
@@ -156,6 +158,49 @@ foreach ($dateTimeCollection->asStrings() as $dateTimeString) {
 }
 
 // prints: 1992-10-07 - 1992-09-08 - 
+```
+
+### EventPublisher
+
+```php
+class MessageEvent extends Event
+{
+    private $message;
+
+    public function __construct($message)
+    {
+        parent::__construct();
+        $this->message = $message;
+    }
+
+    public function getMessage()
+    {
+        return $this->message;
+    }
+}
+
+class MessageSubscriber extends EventSubscriber
+{
+    public function isSubscribedTo(Event $event)
+    {
+        return $event instanceof MessageEvent;
+    }
+
+    public function handle(Event $event)
+    {
+        printf(
+            '[%s]: %s %s',
+            $event->getOccurredOn()->format('Y-m-d H:i:s'),
+            $event->getMessage(),
+            PHP_EOL
+        );
+    }
+}
+
+SingleEventPublisher::instance()
+    ->subscribe(new MessageSubscriber())
+    ->publish(new MessageEvent('Hi!'))
+    ->publish(new MessageEvent('Bye!'));
 ```
 
 ### DataType

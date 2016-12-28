@@ -15,10 +15,10 @@ class EventTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @return \DateTime
+     * @return \DateTimeImmutable
      */
     private function now()
     {
-        return new \DateTime();
+        return new \DateTimeImmutable();
     }
 }

@@ -5,17 +5,17 @@ namespace JimmyOak\Event;
 abstract class Event
 {
     /**
-     * @var \DateTime
+     * @var \DateTimeImmutable
      */
     private $occurredOn;
 
     public function __construct()
     {
-        $this->occurredOn = new \DateTime();
+        $this->occurredOn = new \DateTimeImmutable();
     }
 
     /**
-     * @return \DateTime
+     * @return \DateTimeImmutable
      */
     public function getOccurredOn()
     {

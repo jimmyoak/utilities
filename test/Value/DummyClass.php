@@ -10,6 +10,10 @@ class DummyClass extends ParentDummyClass
     private $anObject;
     private $anArrayOfObjects;
     public $aResource;
+    private $aDateTime;
+    private $aDateTimeImmutable;
+    private $aDateInterval;
+    private $aDateTimeZone;
 
     public function __construct()
     {
@@ -19,6 +23,10 @@ class DummyClass extends ParentDummyClass
             $this->anObject
         ];
         $this->aResource = tmpfile();
+        $this->aDateTime = new \DateTime('1992-10-07 21:05:10');
+        $this->aDateTimeImmutable = new \DateTimeImmutable('2017-01-25 21:18:20');
+        $this->aDateInterval = new \DateInterval('P1DT1H2M3S');
+        $this->aDateTimeZone = new \DateTimeZone('Europe/Madrid');
     }
 
     /**

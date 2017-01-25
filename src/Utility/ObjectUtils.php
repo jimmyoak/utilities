@@ -16,14 +16,14 @@ class ObjectUtils extends UtilsBase
     }
 
     /**
-     * @param object $object
+     * @param object $objectToParse
      * @param bool $deep
      *
-     * @return array
+     * @return \SimpleXMLElement
      */
-    public function toArray($object, $deep = self::SHALLOW)
+    public function toXml($objectToParse, $deep = self::SHALLOW)
     {
-        return $deep ? $this->toDeepArray($object) : $this->toShallowArray($object);
+        return simplexml_load_string($this->toXmlString($objectToParse, $deep));
     }
 
     /**
@@ -38,14 +38,67 @@ class ObjectUtils extends UtilsBase
     }
 
     /**
-     * @param object $objectToParse
+     * @param object $object
      * @param bool $deep
      *
-     * @return \SimpleXMLElement
+     * @return array
      */
-    public function toXml($objectToParse, $deep = self::SHALLOW)
+    public function toArray($object, $deep = self::SHALLOW)
     {
-        return simplexml_load_string($this->toXmlString($objectToParse, $deep));
+        return $deep ? $this->toDeepArray($object) : $this->toShallowArray($object);
+    }
+
+    private function toDeepArray($object)
+    {
+        $array = [];
+
+        if ($this->isDateTimeExtensionObject($object)) {
+            return $this->parseDateTimeExtensionObject($object);
+        }
+
+        $vars = $this->getAllObjectVarsOrArrayProperties($object);
+
+        foreach ($vars as $property => $value) {
+            if (is_object($value) || is_array($value)) {
+                $array[$property] = $this->toDeepArray($value);
+            } elseif (is_resource($value)) {
+                $array[$property] = (string)$value;
+            } else {
+                $array[$property] = $value;
+            }
+        }
+
+        return $array;
+    }
+
+    private function isDateTimeExtensionObject($object)
+    {
+        return $object instanceof \DateTimeInterface
+            || $object instanceof \DateInterval
+            || $object instanceof \DateTimeZone;
+    }
+
+    private function parseDateTimeExtensionObject($object)
+    {
+        if ($object instanceof \DateTimeInterface) {
+            return $object->format(\DateTime::ISO8601);
+        } elseif ($object instanceof \DateInterval) {
+            return $object->format('P%yY%mM%dDT%hH%iM%sS');
+        } elseif ($object instanceof \DateTimeZone) {
+            return $object->getName();
+        }
+
+        return (string) $object;
+    }
+
+    private function getAllObjectVarsOrArrayProperties($object): array
+    {
+        if (is_object($object)) {
+            $vars = $this->getAllObjectVars($object);
+        } else {
+            $vars = $object;
+        }
+        return $vars;
     }
 
     private function getAllObjectVars($object)
@@ -64,32 +117,13 @@ class ObjectUtils extends UtilsBase
         return $vars;
     }
 
-    private function toDeepArray($object)
-    {
-        $array = [];
-
-        if (is_object($object)) {
-            $vars = $this->getAllObjectVars($object);
-        } else {
-            $vars = $object;
-        }
-
-        foreach ($vars as $property => $value) {
-            if (is_object($value) || is_array($value)) {
-                $array[$property] = $this->toDeepArray($value);
-            } elseif (is_resource($value)) {
-                $array[$property] = (string) $value;
-            } else {
-                $array[$property] = $value;
-            }
-        }
-
-        return $array;
-    }
-
     private function toShallowArray($object)
     {
         $array = [];
+
+        if ($this->isDateTimeExtensionObject($object)) {
+            return $this->parseDateTimeExtensionObject($object);
+        }
 
         foreach ($object as $property => $value) {
             if (is_object($value) || is_array($value)) {

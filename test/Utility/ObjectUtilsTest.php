@@ -26,9 +26,10 @@ class ObjectUtilsTest extends UtilsBaseTest
             '<video>aVideo.mp4</video>' .
             '<audio/>' .
             '</media>' .
-            '<resource>'.
-            (string) $this->objectToParse->details->resource .
-            '</resource>'.
+            '<resource>' .
+            (string)$this->objectToParse->details->resource .
+            '</resource>' .
+            '<datetime>1992-10-07T21:05:10+0000</datetime>' .
             '</details>';
 
         $this->expectedParsedXml = simplexml_load_string($this->expectedParsedXmlString);
@@ -49,7 +50,8 @@ class ObjectUtilsTest extends UtilsBaseTest
                     'video' => 'aVideo.mp4',
                     'audio' => [],
                 ],
-                'resource' => (string) $this->objectToParse->details->resource,
+                'resource' => (string)$this->objectToParse->details->resource,
+                'datetime' => '1992-10-07T21:05:10+0000',
             ],
         ];
 
@@ -99,7 +101,11 @@ class ObjectUtilsTest extends UtilsBaseTest
                     'oneMoreValue' => 'Oak',
                 ]
             ],
-            'aResource' => (string) $object->aResource,
+            'aResource' => (string)$object->aResource,
+            'aDateTime' => '1992-10-07T21:05:10+0100',
+            'aDateTimeImmutable' => '2017-01-25T21:18:20+0100',
+            'aDateInterval' => 'P0Y0M1DT1H2M3S',
+            'aDateTimeZone' => 'Europe/Madrid',
             'aParentProperty' => 5,
         ];
 
@@ -119,6 +125,7 @@ class ObjectUtilsTest extends UtilsBaseTest
 
         $details->media = $media;
         $details->resource = tmpfile();
+        $details->datetime = new \DateTimeImmutable('1992-10-07 21:05:10', new \DateTimeZone('UTC'));
 
         $this->objectToParse = new \stdClass();
         $this->objectToParse->details = $details;

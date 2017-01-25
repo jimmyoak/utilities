@@ -91,7 +91,7 @@ class ObjectUtils extends UtilsBase
         return (string) $object;
     }
 
-    private function getAllObjectVarsOrArrayProperties($object): array
+    private function getAllObjectVarsOrArrayProperties($object)
     {
         if (is_object($object)) {
             $vars = $this->getAllObjectVars($object);
